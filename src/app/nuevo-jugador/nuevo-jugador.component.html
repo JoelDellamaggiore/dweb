@@ -1,75 +1,133 @@
 <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="../../favicon.ico" alt="" />
+    <h2>Nuevo Jugador</h2>
+    <p class="lead">
+      Componente que nos permite el ingreso de datos de un nuevo jugador
+    </p>
+  </div>
 
-    <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="../../favicon.ico" alt="">
-        <h2>Nuevo Jugador</h2>
-        <p class="lead">Componente que nos permite el ingreso de datos de un nuevo jugador</p>
-    </div>
+  <div class="col-12">
+    <h4 class="mb-3">Datos Personales</h4>
+    <form>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            placeholder=""
+            value=""
+          />
+        </div>
 
+        <div class="col-sm-6">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            placeholder=""
+            value=""
+          />
+        </div>
+        <div class="col-sm-6">
+          <label for="dni" class="form-label">DNI</label>
+          <input
+            type="number"
+            class="form-control"
+            id="dni"
+            placeholder=""
+            value=""
+            min="0"
+          />
+        </div>
+        <div class="col-sm-6">
+          <label for="legajo" class="form-label">Legajo</label>
+          <input
+            type="number"
+            class="form-control"
+            id="legajo"
+            placeholder=""
+            value=""
+            min="0"
+          />
+        </div>
+        <div class="col-sm-6">
+          <label for="telefono" class="form-label">Telefono</label>
+          <input
+            type="text"
+            class="form-control"
+            id="telefono"
+            placeholder=""
+            value=""
+          />
+        </div>
+        <div class="col-sm-6">
+          <label for="fcnac" class="form-label">Fecha Nacimiento</label>
+          <input
+            type="date"
+            class="form-control"
+            id="fcnac"
+            placeholder=""
+            value=""
+          />
+        </div>
+      </div>
 
-    <div class="col-12">
-        <h4 class="mb-3">Datos Personales</h4>
-        <form>
-            <div class="row g-3">
-                <div class="col-sm-6">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="" value="">
-                </div>
+      <hr class="my-4" />
 
-                <div class="col-sm-6">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" placeholder="" value="">
-                </div>
-                <div class="col-sm-6">
-                    <label for="dni" class="form-label">DNI</label>
-                    <input type="number" class="form-control" id="dni" placeholder="" value="">
-                </div>
-                <div class="col-sm-6">
-                    <label for="legajo" class="form-label">Legajo</label>
-                    <input type="number" class="form-control" id="legajo" placeholder="" value="">
-                </div>
-                <div class="col-sm-6">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" id="telefono" placeholder="" value="">
-                </div>
-                <div class="col-sm-6">
-                    <label for="fcnac" class="form-label">Fecha Nacimiento</label>
-                    <input type="date" class="form-control" id="fcnac" placeholder="" value="">
-                </div>
-            </div>
+      <h4 class="mb-3">Facultad</h4>
 
-            <hr class="my-4">
+      <div class="my-3">
+        <div class="form-check">
+          <input
+            id="vm"
+            name="facultadUbicacion"
+            type="radio"
+            class="form-check-input"
+          />
+          <label class="form-check-label" for="vm">Villa María</label>
+        </div>
+        <div class="form-check">
+          <input
+            id="sf"
+            name="facultadUbicacion"
+            type="radio"
+            class="form-check-input"
+          />
+          <label class="form-check-label" for="sf">San Francisco</label>
+        </div>
+        <div class="form-check">
+          <input
+            id="cba"
+            name="facultadUbicacion"
+            type="radio"
+            class="form-check-input"
+          />
+          <label class="form-check-label" for="cba">Córdoba</label>
+        </div>
+      </div>
 
-            <h4 class="mb-3">Facultad</h4>
+      <hr class="my-4" />
+      <h4 class="mb-3">Disciplina</h4>
+      <select class="form-select">
+        <option selected>Abre el menu y selecciona una disciplina</option>
+        <option value="1">Futbol</option>
+        <option value="2">Voley</option>
+        <option value="3">Basquet</option>
+      </select>
 
-            <div class="my-3">
-                <div class="form-check">
-                    <input id="vm" name="facultadUbicacion" type="radio" class="form-check-input">
-                    <label class="form-check-label" for="vm">Villa María</label>
-                </div>
-                <div class="form-check">
-                    <input id="sf" name="facultadUbicacion" type="radio" class="form-check-input">
-                    <label class="form-check-label" for="sf">San Francisco</label>
-                </div>
-                <div class="form-check">
-                    <input id="cba" name="facultadUbicacion" type="radio" class="form-check-input">
-                    <label class="form-check-label" for="cba">Córdoba</label>
-                </div>
-            </div>
+      <hr class="my-4" />
 
-            <hr class="my-4">
-            <h4 class="mb-3">Disciplina</h4>
-            <select class="form-select">
-                <option selected>Abre el menu y selecciona una disciplina</option>
-                <option value="1">Futbol</option>
-                <option value="2">Voley</option>
-                <option value="3">Basquet</option>
-            </select>
-
-            <hr class="my-4">
-            
-            <button class="w-100 btn btn-primary btn-lg" type="button" onclick="swal('Registro Exitoso', 'Nuevo jugador registrado', 'success')">Registrar Nuevo Jugador</button>
-        </form>
-    </div>
-
+      <button
+        class="w-100 btn btn-primary btn-lg"
+        type="button"
+        onclick="swal('Registro Exitoso', 'Nuevo jugador registrado', 'success')"
+      >
+        Registrar Nuevo Jugador
+      </button>
+    </form>
+  </div>
 </div>
