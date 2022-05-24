@@ -9,70 +9,53 @@
 
   <div class="col-12">
     <h4 class="mb-3">Datos Personales</h4>
-    <form>
+    <form [formGroup]="nuevo" (ngSubmit)="guardar()">
       <div class="row g-3">
         <div class="col-sm-6">
           <label for="nombre" class="form-label">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            placeholder=""
-            value=""
-          />
+          <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido" />
+          <small *ngIf="nombreNoValido" class="text-danger">Ingrese al menos 5 caracteres</small>
         </div>
 
         <div class="col-sm-6">
           <label for="apellido" class="form-label">Apellido</label>
-          <input
-            type="text"
-            class="form-control"
-            id="apellido"
-            placeholder=""
-            value=""
-          />
+          <input type="text" class="form-control" formControlName="apellido" [class.is-invalid]="apellidoNoValido"/>
+          <small *ngIf="apellidoNoValido" class="text-danger">Ingrese al menos 5 caracteres</small>
         </div>
         <div class="col-sm-6">
           <label for="dni" class="form-label">DNI</label>
-          <input
-            type="number"
-            class="form-control"
-            id="dni"
-            placeholder=""
-            value=""
-            min="0"
-          />
+          <input type="text" class="form-control" formControlName="dni" [class.is-invalid]="dniNoValido" />
+          <small *ngIf="dniNoValido" class="text-danger">Ingrese 8 caracteres</small>
         </div>
         <div class="col-sm-6">
           <label for="legajo" class="form-label">Legajo</label>
-          <input
-            type="number"
-            class="form-control"
-            id="legajo"
-            placeholder=""
-            value=""
-            min="0"
-          />
+          <input type="text" class="form-control" formControlName="legajo" [class.is-invalid]="legajoNoValido" />
+          <small *ngIf="legajoNoValido" class="text-danger">No puede estar vacio</small>
         </div>
         <div class="col-sm-6">
           <label for="telefono" class="form-label">Telefono</label>
-          <input
-            type="text"
-            class="form-control"
-            id="telefono"
-            placeholder=""
-            value=""
-          />
+          <input type="text" class="form-control" formControlName="telefono" [class.is-invalid]="telefonoNoValido"/>
+          <small *ngIf="telefonoNoValido" class="text-danger">Ingrese 10 caracteres</small>
         </div>
         <div class="col-sm-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control" formControlName="email" [class.is-invalid]="emailNoValido"/>
+          <small *ngIf="emailNoValido" class="text-danger">Formato email no valido</small>
+        </div>
+        <div class="col-sm-6">
+          <label for="nacionalidad" class="form-label">Nacionalidad</label>
+          <select class="form-select" formSelectName="nacionalidad">
+            <option selected>Selecciona una nacionalidad</option>
+            <option value="1">Argentina</option>
+            <option value="2">Venezuela</option>
+            <option value="3">Brasil</option>
+          </select>
+        </div>
+
+        <div class="col-sm-6">
           <label for="fcnac" class="form-label">Fecha Nacimiento</label>
-          <input
-            type="date"
-            class="form-control"
-            id="fcnac"
-            placeholder=""
-            value=""
-          />
+          <input type="date" class="form-control" formControlName="fechaNacimiento" [class.is-invalid]="fechaNacimientoNoValido" />
+          <small *ngIf="fechaNacimientoNoValido" class="text-danger">Debe seleccionar su fecha de nacimiento</small>
         </div>
       </div>
 
@@ -80,52 +63,42 @@
 
       <h4 class="mb-3">Facultad</h4>
 
-      <div class="my-3">
+      <!--<div class="my-3">
         <div class="form-check">
-          <input
-            id="vm"
-            name="facultadUbicacion"
-            type="radio"
-            class="form-check-input"
-          />
+          <input id="vm" name="facultadUbicacion" type="radio" class="form-check-input" />
           <label class="form-check-label" for="vm">Villa María</label>
         </div>
         <div class="form-check">
-          <input
-            id="sf"
-            name="facultadUbicacion"
-            type="radio"
-            class="form-check-input"
-          />
+          <input id="sf" name="facultadUbicacion" type="radio" class="form-check-input" />
           <label class="form-check-label" for="sf">San Francisco</label>
         </div>
         <div class="form-check">
-          <input
-            id="cba"
-            name="facultadUbicacion"
-            type="radio"
-            class="form-check-input"
-          />
+          <input id="cba" name="facultadUbicacion" type="radio" class="form-check-input" />
           <label class="form-check-label" for="cba">Córdoba</label>
+        </div>
+      </div>-->
+      <div class="my-3">
+        <div *ngFor="let n of facultades">
+          <label>
+                 <input type="radio" [value]="n.key" formControlName="facultad" [class.is-invalid]="facultadNoValido">
+                   {{n.nombre}}
+          </label>
+          <small *ngIf="facultadNoValido" class="text-danger">Debe seleccionar una facultad</small>
         </div>
       </div>
 
       <hr class="my-4" />
       <h4 class="mb-3">Disciplina</h4>
-      <select class="form-select">
-        <option selected>Abre el menu y selecciona una disciplina</option>
-        <option value="1">Futbol</option>
-        <option value="2">Voley</option>
-        <option value="3">Basquet</option>
+      <select class="form-select" formControlName="disciplina">
+        <option *ngFor="let n of disciplinas" [value]="n.key">
+          {{ n.nombre }}
+        </option>
+        <small *ngIf="disciplinaNoValido" class="text-danger">Debe seleccionar una disciplina</small>
       </select>
 
       <hr class="my-4" />
 
-      <button
-        class="w-100 btn btn-primary btn-lg"
-        type="button"
-        onclick="swal('Registro Exitoso', 'Nuevo jugador registrado', 'success')"
-      >
+      <button class="w-100 btn btn-primary btn-lg" type="submit">
         Registrar Nuevo Jugador
       </button>
     </form>
