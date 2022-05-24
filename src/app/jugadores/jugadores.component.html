@@ -27,22 +27,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Joel Dellamaggiore</td>
-                                <td>42511013</td>
-                                <td>25/03/2000</td>
-                                <td>Villa Maria</td>
-                                <td>Futbol</td>
-                                <td>Argentina</td>
+                            <tr *ngFor="let n of jugador" >
+                                <td>{{n.nombre}} {{n.apellido}}</td>
+                                <td>{{n.dni}}</td>
+                                <td>{{n.fechaNac}}</td>
+                                <td>{{n.facultad}}</td>
+                                <td>{{n.disciplina}}</td>
+                                <td>{{n.nacionalidad}}</td>
                             </tr>
-                            <tr>
-                                <td>Santiago Giordano</td>
-                                <td>12345678</td>
-                                <td>17/01/2000</td>
-                                <td>Villa Maria</td>
-                                <td>Natacion</td>
-                                <td>Argentina</td>
-                            </tr>
+                           
+                            
                         </tbody>
                     </table>
                 </div>

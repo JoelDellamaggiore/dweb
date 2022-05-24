@@ -5,7 +5,6 @@ import { JugadoresComponent } from './jugadores/jugadores.component';
 import { NuevoJugadorComponent } from './nuevo-jugador/nuevo-jugador.component';
 
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'nuevo-jugador', component: NuevoJugadorComponent },

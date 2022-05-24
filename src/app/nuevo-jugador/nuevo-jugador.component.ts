@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ServiceDisciplinaService } from '../service-disciplina.service';
+import { ServiceFacultadService } from '../service-facultad.service';
+
+
 @Component({
   selector: 'app-nuevo-jugador',
   templateUrl: './nuevo-jugador.component.html',
@@ -7,8 +11,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class NuevoJugadorComponent implements OnInit {
   nuevo!: FormGroup;
-  constructor(private fb: FormBuilder) {
-    this.crearFormulario();
+  disciplinas: any;
+  facultades:any;
+  constructor(private fb: FormBuilder, private disciplinaDatos: ServiceDisciplinaService, private facultadDatos: ServiceFacultadService) {
+    this.crearFormulario(); 
+    this.disciplinas= disciplinaDatos.disciplina();
+    this.facultades= facultadDatos.facultad();
   }
 
   ngOnInit(): void {
@@ -67,19 +75,7 @@ export class NuevoJugadorComponent implements OnInit {
     }
   };
 
-  disciplinas: any[] = [
-    {nombre: "Futbol",key: "fut"},
-    {nombre: "Basket",key: "bas"},
-    {nombre: "Voley",key: "vol"},
-    {nombre: "Hockey",key: "hock"},
-  ]
-
-  facultades: any[] = [
-    {nombre: "Villa Maria",key: "vm"},
-    {nombre: "San Francisco",key: "sf"},
-    {nombre: "Rafaela",key: "rfa"},
-    {nombre: "La Plata",key: "lpt"},
-  ]
+ 
 
 
 }
