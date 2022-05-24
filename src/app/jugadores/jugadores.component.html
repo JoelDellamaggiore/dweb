@@ -1,46 +1,52 @@
 <div class="container">
-    <div class="text-center">
-        <h2>Lista de Jugadores</h2>
-    </div>
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="" aria-label="Recipient's username with two button addons">
-        <button class="btn btn-outline-secondary" type="button">Filtrar</button>
-        <select class="btn btn-outline-secondary">
-            <option *ngFor="let n of filtros" [value]="n.key">
-              {{ n.nombre }}
-            </option>
-          </select>
-      </div>
-    <div class="col-12">
-        <div class="card shadow-2-strong">
-            <div class="card-body p-0">
-                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true">
-                    <table class="table table-dark mb-0">
-                        <thead style="background-color: #393939;">
-                            <tr class="text-uppercase">
-                                <th scope="col">Nombre y Apellido</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">Fecha Nacimiento</th>
-                                <th scope="col">Facultad</th>
-                                <th scope="col">Disciplina</th>
-                                <th scope="col">Nacionalidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let n of jugador" >
-                                <td>{{n.nombre}} {{n.apellido}}</td>
-                                <td>{{n.dni}}</td>
-                                <td>{{n.fechaNac}}</td>
-                                <td>{{n.facultad}}</td>
-                                <td>{{n.disciplina}}</td>
-                                <td>{{n.nacionalidad}}</td>
-                            </tr>
-                           
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <div class="text-center">
+    <h2>Lista de Jugadores</h2>
+  </div>
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder=""
+      aria-label="Recipient's username with two button addons"
+    />
+    <button class="btn btn-outline-secondary" type="button">Filtrar</button>
+    <select class="btn btn-outline-secondary">
+      <option *ngFor="let n of filtros" [value]="n.key">
+        {{ n.nombre }}
+      </option>
+    </select>
+  </div>
+  <div class="col-12">
+    <div class="card shadow-2-strong">
+      <div class="card-body p-0">
+        <div
+          class="table-responsive table-scroll"
+          data-mdb-perfect-scrollbar="true"
+        >
+          <table class="table table-dark mb-0">
+            <thead style="background-color: #393939">
+              <tr class="text-uppercase">
+                <th scope="col">Nombre y Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">Facultad</th>
+                <th scope="col">Disciplina</th>
+                <th scope="col">Nacionalidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let n of jugador">
+                <td>{{ n.nombre }} {{ n.apellido }}</td>
+                <td>{{ n.dni }}</td>
+                <td>{{ n.fechaNac }}</td>
+                <td>{{ n.facultad }}</td>
+                <td>{{ n.disciplina.nombre }}</td>
+                <td>{{ n.nacionalidad }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </div>
