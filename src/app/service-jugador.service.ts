@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
+//hay que crear una clase jugador
 export class ServiceJugadorService {
   constructor() {}
   jugador() {

@@ -26,23 +26,45 @@
           <table class="table table-dark mb-0">
             <thead style="background-color: #393939">
               <tr class="text-uppercase">
-                <th scope="col">Nombre y Apellido</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Facultad</th>
-                <th scope="col">Disciplina</th>
-                <th scope="col">Nacionalidad</th>
+                <th scope="col" class="column">Nombre y Apellido</th>
+                <th scope="col" class="column">DNI</th>
+                <th scope="col" class="column">Fecha Nacimiento</th>
+                <th scope="col" class="column">Facultad</th>
+                <th scope="col" class="column">Disciplina</th>
+                <th scope="col" class="column">Nacionalidad</th>
+                <th scope="col" class="column">Rol</th>
+                <th scope="col" class="column">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let n of jugador">
-                <td>{{ n.nombre }} {{ n.apellido }}</td>
-                <td>{{ n.dni }}</td>
-                <td>{{ n.fechaNac }}</td>
-                <td>{{ n.facultad }}</td>
-                <td>{{ n.disciplina.nombre }}</td>
-                <td>{{ n.nacionalidad }}</td>
+                <td class="column">{{ n.nombre }} {{ n.apellido }}</td>
+                <td class="column">{{ n.dni }}</td>
+                <td class="column">{{ n.fechaNac }}</td>
+                <td class="column">{{ n.facultad }}</td>
+                <td class="column">{{ n.disciplina.nombre }}</td>
+                <td class="column">{{ n.nacionalidad }}</td>
+                <td class="column">role</td>
+                <td class="column">
+                  <button
+                    id="action-button"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    (click)="editar(n.id)"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    id="action-button"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    (click)="eliminar(n.id)"
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
+              <!--crear boton editar-->
             </tbody>
           </table>
         </div>
