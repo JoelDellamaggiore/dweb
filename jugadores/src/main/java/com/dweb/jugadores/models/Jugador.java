@@ -10,8 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name = "jugadores")
+@Table(name = "jugador")
 public class Jugador {
     @Id
     @Column(name = "LEGAJO", nullable = false)
@@ -24,15 +26,19 @@ public class Jugador {
     private Date fechaNacimiento;
     //Definicion de atributos de la clase
     @ManyToOne(fetch = FetchType.LAZY)//MUCHOS JUGADORES PUEDEN PERTENECER A UNA MISMA NACIONALIDAD
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "nacionalidad_codigo")
     private Nacionalidad nacionalidad;
     @ManyToOne(fetch = FetchType.LAZY)//MUCHOS JUGADORES PUEDEN PERTENECER A UNA MISMA FACULTAD
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "facultad_codigo")
     private Facultad facultad;
     @ManyToOne(fetch = FetchType.LAZY)//MUCHOS JUGADORES PUEDEN PERTENECER A UNA MISMA FACULTAD
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "rol_codigo")
     private Rol rol;
     @ManyToOne(fetch = FetchType.LAZY)//MUCHOS JUGADORES PUEDEN PERTENECER A UNA MISMA FACULTAD
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "disciplina_codigo")
     private Disciplina disciplina;
     //Definicion de getters y setters
