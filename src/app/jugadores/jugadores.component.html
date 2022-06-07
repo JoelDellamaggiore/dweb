@@ -9,12 +9,12 @@
       placeholder=""
       aria-label="Recipient's username with two button addons"
     />
-    <button class="btn btn-outline-secondary" type="button">Filtrar</button>
+    <!-- <button class="btn btn-outline-secondary" type="button">Filtrar</button>
     <select class="btn btn-outline-secondary">
       <option *ngFor="let n of filtros" [value]="n.key">
         {{ n.nombre }}
       </option>
-    </select>
+    </select> -->
   </div>
   <div class="col-12">
     <div class="card shadow-2-strong">
@@ -40,13 +40,13 @@
               <tr *ngFor="let n of jugador">
                 <td class="column">{{ n.nombre }} {{ n.apellido }}</td>
                 <td class="column">{{ n.dni }}</td>
-                <td class="column">{{ n.fechaNac }}</td>
-                <td class="column">{{ n.facultad }}</td>
+                <td class="column">{{ n.fechaNacimiento }}</td>
+                <td class="column">{{ n.facultad.nombre }}</td>
                 <td class="column">{{ n.disciplina.nombre }}</td>
-                <td class="column">{{ n.nacionalidad }}</td>
-                <td class="column">role</td>
+                <td class="column">{{ n.nacionalidad.nombre }}</td>
+                <td class="column">{{n.rol.nombre}}</td>
                 <td class="column">
-                  <button
+                  <!-- <button
                     id="action-button"
                     class="btn btn-outline-secondary"
                     type="button"
@@ -61,10 +61,10 @@
                     (click)="eliminar(n.id)"
                   >
                     Eliminar
-                  </button>
+                  </button> -->
                 </td>
               </tr>
-              <!--crear boton editar-->
+             
             </tbody>
           </table>
         </div>
