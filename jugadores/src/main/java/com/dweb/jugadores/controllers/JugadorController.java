@@ -15,14 +15,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dweb.jugadores.models.Disciplina;
+import com.dweb.jugadores.models.Facultad;
 import com.dweb.jugadores.models.Jugador;
+import com.dweb.jugadores.models.Nacionalidad;
+import com.dweb.jugadores.services.DisciplinaService;
+import com.dweb.jugadores.services.FacultadService;
 import com.dweb.jugadores.services.JugadorService;
+import com.dweb.jugadores.services.NacionalidadService;
 @CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api/jugadores")
 public class JugadorController {
     @Autowired
     private JugadorService jugadorService;
+    @Autowired
+    private FacultadService facultadService;
+    @Autowired
+    private DisciplinaService disciplinaService;
+    @Autowired
+    private NacionalidadService nacionalidadService;
+    //Enpoints sobre valores que va a tomar el jugador de otras clases
+    @GetMapping("/facultades")
+    public ResponseEntity<List<Facultad>> listarFacultades(){
+        return new ResponseEntity<>(facultadService.findAll(),HttpStatus.OK);
+    }
+    @GetMapping("/disciplinas")
+    public ResponseEntity<List<Disciplina>> listarDisciplinas(){
+        return new ResponseEntity<>(disciplinaService.findAll(),HttpStatus.OK);
+    }
+    @GetMapping("/nacionalidades")
+    public ResponseEntity<List<Nacionalidad>> listarNacionalidades(){
+        return new ResponseEntity<>(nacionalidadService.findAll(),HttpStatus.OK);
+    }
+    //Endpoints sobre el jugador
     @GetMapping("/listar")
     public ResponseEntity<List<Jugador>> listarJugadores(){
         return new ResponseEntity<>(jugadorService.findAll(),HttpStatus.OK);
