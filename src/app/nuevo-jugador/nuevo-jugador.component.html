@@ -2,14 +2,11 @@
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="../../favicon.ico" alt="" />
     <h2>Nuevo Jugador</h2>
-    <p class="lead">
-      Componente que nos permite el ingreso de datos de un nuevo jugador
-    </p>
   </div>
 
   <div class="col-12">
     <h4 class="mb-3">Datos Personales</h4>
-    <form [formGroup]="nuevo" (ngSubmit)="guardar()">
+    <form [formGroup]="nuevo" (ngSubmit)="guardarJugador(f)" #f="ngForm">
       <div class="row g-3">
         <div class="col-sm-6">
           <label for="nombre" class="form-label">Nombre</label>
@@ -18,9 +15,10 @@
             class="form-control"
             formControlName="nombre"
             [class.is-invalid]="nombreNoValido"
+            [(ngModel)]="jugador.nombre"
           />
           <small *ngIf="nombreNoValido" class="text-danger"
-            >Ingrese al menos 5 caracteres</small
+            >Nombre no valido</small
           >
         </div>
 
@@ -31,9 +29,10 @@
             class="form-control"
             formControlName="apellido"
             [class.is-invalid]="apellidoNoValido"
+            [(ngModel)]="jugador.apellido"
           />
           <small *ngIf="apellidoNoValido" class="text-danger"
-            >Ingrese al menos 5 caracteres</small
+            >Apellido no valido</small
           >
         </div>
         <div class="col-sm-6">
@@ -43,9 +42,10 @@
             class="form-control"
             formControlName="dni"
             [class.is-invalid]="dniNoValido"
+            [(ngModel)]="jugador.dni"
           />
           <small *ngIf="dniNoValido" class="text-danger"
-            >Ingrese 8 caracteres</small
+            >DNI no valido</small
           >
         </div>
         <div class="col-sm-6">
@@ -55,9 +55,10 @@
             class="form-control"
             formControlName="legajo"
             [class.is-invalid]="legajoNoValido"
+            [(ngModel)]="jugador.legajo"
           />
           <small *ngIf="legajoNoValido" class="text-danger"
-            >No puede estar vacio</small
+            >Legajo no valido</small
           >
         </div>
         <div class="col-sm-6">
@@ -67,9 +68,10 @@
             class="form-control"
             formControlName="telefono"
             [class.is-invalid]="telefonoNoValido"
+            [(ngModel)]="jugador.telefono"
           />
           <small *ngIf="telefonoNoValido" class="text-danger"
-            >Ingrese 10 caracteres</small
+            >Telefono no valido</small
           >
         </div>
         <div class="col-sm-6">
@@ -79,19 +81,21 @@
             class="form-control"
             formControlName="email"
             [class.is-invalid]="emailNoValido"
+            [(ngModel)]="jugador.email"
           />
           <small *ngIf="emailNoValido" class="text-danger"
-            >Formato email no valido</small
+            >Email no valido</small
           >
         </div>
         <div class="col-sm-6">
           <label for="nacionalidad" class="form-label">Nacionalidad</label>
-          <select class="form-select" formSelectName="nacionalidad">
-            <option selected>Selecciona una nacionalidad</option>
-            <option value="1">Argentina</option>
-            <option value="2">Venezuela</option>
-            <option value="3">Brasil</option>
+          <select [(ngModel)]="jugador.nacionalidad" class="form-control" name="nacionalidad" [class.is-invalid]="nacionalidadNoValido" formControlName="nacionalidad">
+            <option [ngValue]="undefined" disabled selected>Seleccione una nacionalidad</option>
+            <option *ngFor="let nacionalidad of nacionalidades" [ngValue]="nacionalidad">{{nacionalidad.nombre}}</option>
           </select>
+          <small *ngIf="nacionalidadNoValido" class="text-danger"
+            >Seleccione la nacionalidad del jugador</small
+          >
         </div>
 
         <div class="col-sm-6">
@@ -101,9 +105,11 @@
             class="form-control"
             formControlName="fechaNacimiento"
             [class.is-invalid]="fechaNacimientoNoValido"
+            [(ngModel)]="jugador.fechaNacimiento"
+            [max]="mayorDeEdadStr"
           />
           <small *ngIf="fechaNacimientoNoValido" class="text-danger"
-            >Debe seleccionar su fecha de nacimiento</small
+            >Seleccione la fecha de nacimiento del jugador</small
           >
         </div>
       </div>
@@ -111,49 +117,28 @@
       <hr class="my-4" />
 
       <h4 class="mb-3">Facultad</h4>
-
-      <!--<div class="my-3">
-        <div class="form-check">
-          <input id="vm" name="facultadUbicacion" type="radio" class="form-check-input" />
-          <label class="form-check-label" for="vm">Villa María</label>
-        </div>
-        <div class="form-check">
-          <input id="sf" name="facultadUbicacion" type="radio" class="form-check-input" />
-          <label class="form-check-label" for="sf">San Francisco</label>
-        </div>
-        <div class="form-check">
-          <input id="cba" name="facultadUbicacion" type="radio" class="form-check-input" />
-          <label class="form-check-label" for="cba">Córdoba</label>
-        </div>
-      </div>-->
       <div class="my-3">
-        <div *ngFor="let n of facultades">
-          <label>
-            <input
-              type="radio"
-              [value]="n.key"
-              formControlName="facultad"
-              [class.is-invalid]="facultadNoValido"
-            />
-            {{ n.nombre }}
-          </label>
-          <small *ngIf="facultadNoValido" class="text-danger"
-            >Debe seleccionar una facultad</small
+        <select [(ngModel)]="jugador.facultad" class="form-control" name="facultad" [class.is-invalid]="facultadNoValido" formControlName="facultad">
+          <option [ngValue]="undefined" disabled selected>Seleccione una facultad</option>
+          <option *ngFor="let facultad of facultades" [ngValue]="facultad">{{facultad.nombre}}</option>
+        </select>
+        <small *ngIf="facultadNoValido" class="text-danger"
+            >Seleccione la facultad del jugador</small
           >
-        </div>
       </div>
 
       <hr class="my-4" />
-      <h4 class="mb-3">Disciplina</h4>
-      <select class="form-select" formControlName="disciplina">
-        <option *ngFor="let n of disciplinas" [value]="n.key">
-          {{ n.nombre }}
-        </option>
-        <small *ngIf="disciplinaNoValido" class="text-danger"
-          >Debe seleccionar una disciplina</small
-        >
-      </select>
 
+      <h4 class="mb-3">Disciplina</h4>
+      <div class="my-3">
+        <select [(ngModel)]="jugador.disciplina" class="form-control" name="disciplina" [class.is-invalid]="disciplinaNoValido" formControlName="disciplina">
+          <option [ngValue]="undefined" disabled selected>Seleccione una disciplina</option>
+          <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina">{{disciplina.nombre}}</option>
+        </select>
+        <small *ngIf="disciplinaNoValido" class="text-danger"
+            >Seleccione la disciplina del jugador</small
+          >
+      </div>
       <hr class="my-4" />
 
       <button class="w-100 btn btn-primary btn-lg" type="submit">

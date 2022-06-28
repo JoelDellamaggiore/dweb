@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ServiceDisciplinaService } from '../service-disciplina.service';
-import { ServiceFacultadService } from '../service-facultad.service';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Disciplina } from '../modelo/disciplina';
+import { Facultad } from '../modelo/facultad';
+import { Jugador } from '../modelo/jugador';
+import { Nacionalidad } from '../modelo/nacionalidad';
+import { ServiceJugadorService } from '../service-jugador.service';
+import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -10,16 +15,30 @@ import { ServiceFacultadService } from '../service-facultad.service';
   styleUrls: ['./nuevo-jugador.component.css']
 })
 export class NuevoJugadorComponent implements OnInit {
+  public mayorDeEdad:Date;
+  public mayorDeEdadStr:String | null;
   nuevo!: FormGroup;
-  disciplinas: any;
-  facultades:any;
-  constructor(private fb: FormBuilder, private disciplinaDatos: ServiceDisciplinaService, private facultadDatos: ServiceFacultadService) {
+  jugador: Jugador = new Jugador();
+  facultades: Facultad[] = [];
+  disciplinas: Disciplina[] = [];
+  nacionalidades: Nacionalidad[] = [];
+  
+  constructor(private fb: FormBuilder,private jugadorService: ServiceJugadorService,private pd:DatePipe) {
     this.crearFormulario(); 
-    this.disciplinas= disciplinaDatos.disciplina();
-    this.facultades= facultadDatos.facultad();
   }
-
+  
   ngOnInit(): void {
+    this.jugadorService
+    .getFacultades()
+    .subscribe((response) => (this.facultades = response));
+    this.jugadorService
+    .getDisciplinas()
+    .subscribe((response) => (this.disciplinas = response));
+    this.jugadorService
+    .getNacionalidades()
+    .subscribe((response) => (this.nacionalidades = response));
+    this.mayorDeEdad = new Date(new Date().getFullYear()-18,new Date().getMonth(),new Date().getDate());
+    this.mayorDeEdadStr = this.pd.transform(this.mayorDeEdad,"yyyy-MM-dd");
   }
   
   public get nombreNoValido() {
@@ -43,7 +62,7 @@ export class NuevoJugadorComponent implements OnInit {
   public get fechaNacimientoNoValido() {
     return this.nuevo.get('fechaNacimiento')?.invalid && this.nuevo.get('fechaNacimiento')?.touched;
   }
-  public get nacionalidadNacimientoNoValido() {
+  public get nacionalidadNoValido() {
     return this.nuevo.get('nacionalidad')?.invalid && this.nuevo.get('nacionalidad')?.touched;
   }
   public get disciplinaNoValido() {
@@ -55,28 +74,40 @@ export class NuevoJugadorComponent implements OnInit {
   
   crearFormulario(){
     this.nuevo = this.fb.group({
-      nombre: ['',[Validators.required,Validators.minLength(5),Validators.nullValidator]],
-      apellido: ['',[Validators.required,Validators.minLength(5)]],
-      dni: ['',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]],
-      legajo: ['',Validators.required],
-      telefono: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
-      email: ['',[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      nombre: ['',[Validators.required,Validators.pattern('[A-Z][a-z]{3,}')]],
+      apellido: ['',[Validators.required,Validators.pattern('[A-Z][a-z]{3,}')]],
+      dni: ['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
+      legajo: ['',[Validators.required,Validators.pattern('^[0-9]{5,8}$')]],
+      telefono: ['',[Validators.required,Validators.pattern('^[0-9]{10}$')]],
+      email: ['',[Validators.required,Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}$')]],
       fechaNacimiento: ['',Validators.required],
       nacionalidad: ['',Validators.required],
       disciplina:['',Validators.required],
       facultad:['',Validators.required],
     });
   };
-  guardar(){
-    if(this.nuevo.invalid){
+  guardarJugador(form: any){
+    if(form.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Faltan datos!',
+      });
       return Object.values(this.nuevo.controls).forEach(control =>{
         control.markAsTouched();
       });
     }
+    if(form.valid) {
+      this.jugadorService
+      .guardarJugador(this.jugador)
+      .subscribe(response => Swal.fire({
+        icon: 'success',
+        title: 'Jugador registrado',
+        text: 'El jugador ha sido guardado con exito ',
+      }));
+    }
+    
   };
-
- 
-
 
 }
 
