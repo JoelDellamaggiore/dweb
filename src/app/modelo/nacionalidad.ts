@@ -1,5 +1,5 @@
 export class Nacionalidad {
-    codigoNac : string;
+    codigo: string;
     nombre:string;
     descripcion: string;
 }

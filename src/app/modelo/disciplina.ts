@@ -1,5 +1,5 @@
 export class Disciplina {
-    codigo : string;
-    descripcion:string;
+    codigo: string;
     nombre:string;
+    descripcion:string;
 }

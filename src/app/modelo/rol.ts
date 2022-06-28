@@ -1,6 +1,5 @@
 export class Rol {
-    codigoRol: string;
+    codigo: string;
     nombre:string;
     descripcion:string;
-
 }
