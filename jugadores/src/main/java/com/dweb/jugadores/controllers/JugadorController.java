@@ -53,6 +53,10 @@ public class JugadorController {
     public ResponseEntity<List<Jugador>> listarJugadores(){
         return new ResponseEntity<>(jugadorService.findAll(),HttpStatus.OK);
     }
+    @GetMapping("/{legajo}")
+    public ResponseEntity<Jugador> obtenerJugador(@PathVariable String legajo){
+        return new ResponseEntity<>(jugadorService.findById(legajo),HttpStatus.OK);
+    }
     @PostMapping("/nuevo-jugador")
     public ResponseEntity<Jugador> nuevoJugador(@RequestBody Jugador jugador){
         return new ResponseEntity<>(jugadorService.save(jugador),HttpStatus.CREATED);
