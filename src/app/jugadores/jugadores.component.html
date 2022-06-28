@@ -9,12 +9,6 @@
       placeholder=""
       aria-label="Recipient's username with two button addons"
     />
-    <!-- <button class="btn btn-outline-secondary" type="button">Filtrar</button>
-    <select class="btn btn-outline-secondary">
-      <option *ngFor="let n of filtros" [value]="n.key">
-        {{ n.nombre }}
-      </option>
-    </select> -->
   </div>
   <div class="col-12">
     <div class="card shadow-2-strong">
@@ -28,11 +22,13 @@
               <tr class="text-uppercase">
                 <th scope="col" class="column">Nombre y Apellido</th>
                 <th scope="col" class="column">DNI</th>
+                <th scope="col" class="column">Legajo</th>
                 <th scope="col" class="column">Fecha Nacimiento</th>
                 <th scope="col" class="column">Facultad</th>
                 <th scope="col" class="column">Disciplina</th>
                 <th scope="col" class="column">Nacionalidad</th>
-                <th scope="col" class="column">Rol</th>
+                <th scope="col" class="column">Telefono</th>
+                <th scope="col" class="column">Email</th>
                 <th scope="col" class="column">Acciones</th>
               </tr>
             </thead>
@@ -40,11 +36,13 @@
               <tr *ngFor="let n of jugador">
                 <td class="column">{{ n.nombre }} {{ n.apellido }}</td>
                 <td class="column">{{ n.dni }}</td>
+                <td class="column">{{ n.legajo }}</td>
                 <td class="column">{{ n.fechaNacimiento }}</td>
                 <td class="column">{{ n.facultad.nombre }}</td>
                 <td class="column">{{ n.disciplina.nombre }}</td>
                 <td class="column">{{ n.nacionalidad.nombre }}</td>
-                <td class="column">{{n.rol.nombre}}</td>
+                <td class="column">{{n.telefono}}</td>
+                <td class="column">{{n.email}}</td>
                 <td class="column">
                   <!-- <button
                     id="action-button"
@@ -54,14 +52,15 @@
                   >
                     Editar
                   </button>
+                   -->
                   <button
                     id="action-button"
                     class="btn btn-outline-secondary"
                     type="button"
-                    (click)="eliminar(n.id)"
+                    (click)="eliminarJugador(n.legajo)"
                   >
                     Eliminar
-                  </button> -->
+                  </button>
                 </td>
               </tr>
              
