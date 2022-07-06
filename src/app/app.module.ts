@@ -10,6 +10,9 @@ import { JugadoresComponent } from './jugadores/jugadores.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { ModalEditarJugadorComponent } from './modal-editar-jugador/modal-editar-jugador.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
@@ -18,15 +21,17 @@ import { DatePipe } from '@angular/common';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    JugadoresComponent
+    JugadoresComponent,
+    ModalEditarJugadorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OverlayModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,MdbModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
