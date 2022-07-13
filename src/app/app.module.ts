@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 import { ModalEditarJugadorComponent } from './modal-editar-jugador/modal-editar-jugador.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { FiltroPipe } from './filtro.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
     HeaderComponent,
     FooterComponent,
     JugadoresComponent,
-    ModalEditarJugadorComponent
+    ModalEditarJugadorComponent,
+    FiltroPipe
   ],
   imports: [
     BrowserModule,

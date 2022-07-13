@@ -14,17 +14,30 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 export class JugadoresComponent implements OnInit {
   modalRef: MdbModalRef<ModalEditarJugadorComponent> | null = null;
   jugador: Jugador[] = [];
+  public pagina: number = 0;
+  public busqueda: string = '';
   constructor(private jugadorservicio: ServiceJugadorService, private modalService: MdbModalService) { }
+
   ngOnInit(): void {
     this.jugadorservicio
       .getJugadores()
       .subscribe((response) => (this.jugador = response));
-
   }
-  openModal() {
+  proximaPagina(){
+    this.pagina += 1;
+  }
+  anteriorPagina(){
+    if(this.pagina > 0)
+      this.pagina -= 1;
+  }
+  filtrandoJugador(busqueda: string){
+    this.pagina = 0;
+    this.busqueda = busqueda;
+  }
+  openModal(legajo:string) {
     this.modalRef = this.modalService.open(ModalEditarJugadorComponent, {
       data: {
-          /*INSERTAR OBJETO*/
+        "legajo":legajo
       },
     });
   }
