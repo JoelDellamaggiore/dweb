@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NuevoJugadorComponent } from './nuevo-jugador/nuevo-jugador.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { JugadoresComponent } from './jugadores/jugadores.component';
+import { NuevoJugadorComponent } from './components/nuevo-jugador/nuevo-jugador.component';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { ModalEditarJugadorComponent } from './modal-editar-jugador/modal-editar-jugador.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
+
+import { DisciplinasComponent } from './components/disciplinas/disciplinas/disciplinas.component';
+import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina/nueva-disciplina.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
     HeaderComponent,
     FooterComponent,
     JugadoresComponent,
-    ModalEditarJugadorComponent
+    ModalEditarJugadorComponent,
+    DisciplinasComponent,
+    NuevaDisciplinaComponent
   ],
   imports: [
     BrowserModule,
