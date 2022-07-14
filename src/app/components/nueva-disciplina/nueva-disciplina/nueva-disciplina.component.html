@@ -1,25 +1,31 @@
 <p>INSERTAR ICONO</p>
 <div class="container" style="margin-top: 100px">
-  <form>
+  <form [formGroup]="discForm" (ngSubmit)="guardarDisciplina(f)" #f="ngForm">
     <!-- Name input -->
-    <div class="form-outline mb-4">
+    <div class="form-group form-outline mb-4 ">
       <label class="form-label" for="form4Example1">Codigo</label>
-      <input type="text" id="form4Example1" class="form-control" />
-    </div>
+      <input formControlName="codigo" type="text" name="codigo" class="form-control" [(ngModel)]="disciplina.codigo"   [class.is-invalid]="codigoNoValido">
+      <small *ngIf="codigoNoValido" class="text-danger"> Codigo Invalido</small>
+    </div> 
 
     <!-- Email input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="form4Example2">Nombre</label>
-      <input type="email" id="form4Example2" class="form-control" />
+      <input  formControlName="nombre" type="text" name="nombre"  class="form-control"   [(ngModel)]="disciplina.nombre"  [class.is-invalid]="nombreNoValido">
+      <small *ngIf="nombreNoValido" class="text-danger"> Nombre Invalido</small>
     </div>
 
     <!-- Message input -->
     <div class="form-outline mb-4">
       <label class="form-label" for="form4Example3">Descripcion</label>
-      <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+      <textarea  formControlName="descripcion" class="form-control"name="descripcion" rows="4"  [(ngModel)]="disciplina.descripcion" [class.is-invalid]="descNoValido"></textarea>
+      <small *ngIf="descNoValido" class="text-danger"> Descripcion Invalido</small>
     </div>
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+    <div class="row w-100 align-items-center"><div class="col text-center">
+      <button type="submit" class="btn btn-primary btn-lg btn-block  mb-4  " >Send</button>
+    </div></div>
+   
   </form>
 </div>
