@@ -16,6 +16,7 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 import { DisciplinasComponent } from './components/disciplinas/disciplinas/disciplinas.component';
 import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina/nueva-disciplina.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-di
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OverlayModule
+    OverlayModule,
+    FormsModule
   ],
   providers: [DatePipe,MdbModalService],
   bootstrap: [AppComponent]
