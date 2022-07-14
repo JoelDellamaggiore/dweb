@@ -17,4 +17,9 @@ export class DisciplinaService {
   getDisciplina(): Observable<Disciplina[]>{
     return this.http.get<Disciplina[]>(this.url+'/listar');
   }
+
+  crearDisciplina(disc: Disciplina): Observable<Disciplina>{
+    return this.http.post<Disciplina>(this.url + "/crear", disc);
+
+  }
 }
