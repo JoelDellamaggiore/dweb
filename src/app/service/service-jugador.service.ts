@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Disciplina } from './modelo/disciplina';
-import { Facultad } from './modelo/facultad';
-import { Jugador } from './modelo/jugador';
-import { Nacionalidad } from './modelo/nacionalidad';
+import { Disciplina } from '../modelo/disciplina';
+import { Facultad } from '../modelo/facultad';
+import { Jugador } from '../modelo/jugador';
+import { Nacionalidad } from '../modelo/nacionalidad';
 @Injectable({
   providedIn: 'root',
 })

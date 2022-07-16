@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Jugador } from '../modelo/jugador';
+import { Jugador } from '../../modelo/jugador';
 import Swal from 'sweetalert2';
-import { ServiceJugadorService } from '../service-jugador.service';
+import { ServiceJugadorService } from '../../service/service-jugador.service';
 import { ModalEditarJugadorComponent } from '../modal-editar-jugador/modal-editar-jugador.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 

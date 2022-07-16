@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { Disciplina } from '../modelo/disciplina';
-import { Facultad } from '../modelo/facultad';
-import { Jugador } from '../modelo/jugador';
-import { Nacionalidad } from '../modelo/nacionalidad';
-import { ServiceJugadorService } from '../service-jugador.service';
+import { Disciplina } from '../../modelo/disciplina';
+import { Facultad } from '../../modelo/facultad';
+import { Jugador } from '../../modelo/jugador';
+import { Nacionalidad } from '../../modelo/nacionalidad';
+import { ServiceJugadorService } from '../../service/service-jugador.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 
