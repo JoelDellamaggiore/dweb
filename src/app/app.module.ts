@@ -10,10 +10,13 @@ import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { ModalEditarJugadorComponent } from './components/modal-editar-jugador/modal-editar-jugador.component';
+import { ModalEditarJugadorComponent } from './modal-editar-jugador/modal-editar-jugador.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { FiltroPipe } from './filtro.pipe';
+
+import { DisciplinasComponent } from './components/disciplinas/disciplinas/disciplinas.component';
+import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina/nueva-disciplina.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,14 +27,16 @@ import { FiltroPipe } from './filtro.pipe';
     FooterComponent,
     JugadoresComponent,
     ModalEditarJugadorComponent,
-    FiltroPipe
+    DisciplinasComponent,
+    NuevaDisciplinaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OverlayModule
+    OverlayModule,
+    FormsModule
   ],
   providers: [DatePipe,MdbModalService],
   bootstrap: [AppComponent]
