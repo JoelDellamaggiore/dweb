@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
-// import { OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
@@ -21,6 +21,7 @@ import { ModalEditarJugadorComponent } from './components/modal-editar-jugador/m
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {CommonModule } from '@angular/common';
 import { FiltroPipe } from './filtro.pipe';
+import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,11 @@ import { FiltroPipe } from './filtro.pipe';
     HeaderComponent,
     FooterComponent,
     JugadoresComponent,
-    // ModalEditarJugadorComponent,
     DisciplinasComponent,
     NuevaDisciplinaComponent,
     ModalEditarJugadorComponent,
-    FiltroPipe
+    FiltroPipe,
+    ModalEditComponent
 
   ],
   imports: [
@@ -46,6 +47,7 @@ import { FiltroPipe } from './filtro.pipe';
     FormsModule,
     NoopAnimationsModule,
     CommonModule,
+    OverlayModule
    
   ],
   providers: [DatePipe,MdbModalService],

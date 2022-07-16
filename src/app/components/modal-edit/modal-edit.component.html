@@ -1,0 +1,44 @@
+
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="container" >
+    <form >
+      <!-- Name input -->
+      <label class="form-label" for="form4Example1">Codigo</label>
+      <div class="form-group form-outline mb-4 ">
+        <input formControlName="codigo" type="text" name="codigo" class="form-control border border-dark " value="{{edit.codigo}}"  >
+      </div> 
+  
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example2">Nombre</label>
+        <input  formControlName="nombre" type="text" name="nombre"  class="form-control border border-dark " value="{{edit.nombre}}" >
+      </div>
+  
+      <!-- Message input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example3">Descripcion</label>
+        <textarea  formControlName="descripcion" class="form-control border border-dark "name="descripcion" rows="4" value="{{edit.descripcion}}"></textarea>
+      </div>
+  
+     
+    </form>
+  </div>
+  
+    
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+    Close
+  </button>
+  <button type="button" class="btn btn-primary">Actualizar</button>
+</div>
+
