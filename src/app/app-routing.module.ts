@@ -4,8 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 
 import { NuevoJugadorComponent } from './components/nuevo-jugador/nuevo-jugador.component';
-import { DisciplinasComponent } from './components/disciplinas/disciplinas/disciplinas.component';
-import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina/nueva-disciplina.component';
+import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
+import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

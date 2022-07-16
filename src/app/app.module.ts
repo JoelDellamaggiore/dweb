@@ -10,13 +10,17 @@ import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { ModalEditarJugadorComponent } from './modal-editar-jugador/modal-editar-jugador.component';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { RouterModule } from '@angular/router';
+// import { OverlayModule } from '@angular/cdk/overlay';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
-import { DisciplinasComponent } from './components/disciplinas/disciplinas/disciplinas.component';
-import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina/nueva-disciplina.component';
+import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
+import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina.component';
 import { FormsModule } from '@angular/forms';
+import { ModalEditarJugadorComponent } from './components/modal-editar-jugador/modal-editar-jugador.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {CommonModule } from '@angular/common';
+import { FiltroPipe } from './filtro.pipe';
 
 @NgModule({
   declarations: [
@@ -26,17 +30,23 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     JugadoresComponent,
-    ModalEditarJugadorComponent,
+    // ModalEditarJugadorComponent,
     DisciplinasComponent,
-    NuevaDisciplinaComponent
+    NuevaDisciplinaComponent,
+    ModalEditarJugadorComponent,
+    FiltroPipe
+
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OverlayModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule,
+    CommonModule,
+   
   ],
   providers: [DatePipe,MdbModalService],
   bootstrap: [AppComponent]
