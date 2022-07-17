@@ -8,13 +8,137 @@
   ></button>
 </div>
 <div class="modal-body">
-  <div class="col-12">
-    <h4 class="mb-3">Datos Personales</h4>
-    <input type="text" value="{{jugador.nombre}}">
+  <h4 class="mb-3">Datos Personales</h4>
+    <form [formGroup]="editar" (ngSubmit)="guardarCambios(f)" #f="ngForm">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            [(ngModel)]="jugador.nombre"
+          />
+          <small *ngIf="" class="text-danger"
+            >Nombre no valido</small
+          >
+        </div>
+
+        <div class="col-sm-6">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="apellido"
+            [(ngModel)]="jugador.apellido"
+          />
+          <small *ngIf="" class="text-danger"
+            >Apellido no valido</small
+          >
+        </div>
+        <div class="col-sm-6">
+          <label for="dni" class="form-label">DNI</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="dni"
+            [(ngModel)]="jugador.dni"
+          />
+          <small *ngIf="" class="text-danger"
+            >DNI no valido</small
+          >
+        </div>
+        <div class="col-sm-6">
+          <label for="legajo" class="form-label">Legajo</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="legajo"
+            [(ngModel)]="jugador.legajo"
+          />
+          <small *ngIf="" class="text-danger"
+            >Legajo no valido</small
+          >
+        </div>
+        <div class="col-sm-6">
+          <label for="telefono" class="form-label">Telefono</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="telefono"
+            [(ngModel)]="jugador.telefono"
+          />
+          <small *ngIf="" class="text-danger"
+            >Telefono no valido</small
+          >
+        </div>
+        <div class="col-sm-6">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            [(ngModel)]="jugador.email"
+          />
+          <small *ngIf="" class="text-danger"
+            >Email no valido</small
+          >
+        </div>
+        <div class="col-sm-6">
+          <label for="nacionalidad" class="form-label">Nacionalidad</label>
+          <select [(ngModel)]="jugador.nacionalidad" [compareWith]="compararNacionalidades" class="form-control" name="nacionalidad" [class.is-invalid]="" formControlName="nacionalidad">
+            <option *ngFor="let nacionalidad of nacionalidades" [ngValue]="nacionalidad">{{nacionalidad.nombre}}</option>
+          </select>
+          <small *ngIf="" class="text-danger"
+            >Seleccione la nacionalidad del jugador</small
+          >
+        </div>
+
+        <div class="col-sm-6">
+          <label for="fcnac" class="form-label">Fecha Nacimiento</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="fechaNacimiento"
+            [class.is-invalid]=""
+            [(ngModel)]="jugador.fechaNacimiento"
+            [max]="mayorDeEdadStr"
+          />
+          <small *ngIf="" class="text-danger"
+            >Seleccione la fecha de nacimiento del jugador</small
+          >
+        </div>
+      </div>
+
+      <hr class="my-4" />
+
+      <h4 class="mb-3">Facultad</h4>
+      <div class="my-3">
+        <select [(ngModel)]="jugador.facultad" [compareWith]="compararFacultades" class="form-control" name="facultad" [class.is-invalid]="" formControlName="facultad">
+          <option *ngFor="let facultad of facultades" [ngValue]="facultad">{{facultad.nombre}}</option>
+        </select>
+        <small *ngIf="" class="text-danger"
+            >Seleccione la facultad del jugador</small
+          >
+      </div>
+
+      <hr class="my-4" />
+
+      <h4 class="mb-3">Disciplina</h4>
+      <div class="my-3">
+        <select [(ngModel)]="jugador.disciplina" [compareWith]="compararDisciplinas" class="form-control" name="disciplina" [class.is-invalid]="" formControlName="disciplina">
+          <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina">{{disciplina.nombre}}</option>
+        </select>
+        <small *ngIf="" class="text-danger"
+            >Seleccione la disciplina del jugador</small
+          >
+      </div>
+      <hr class="my-4" />
+    </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
     Close
   </button>
-  <button type="button" class="btn btn-primary">Save changes</button>
+  <button type="submit" class="btn btn-primary">Save changes</button>
 </div>
