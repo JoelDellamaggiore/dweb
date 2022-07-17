@@ -35,9 +35,10 @@ export class JugadoresComponent implements OnInit {
     this.busqueda = busqueda;
   }
   openModal(jugador:any) {
+    const jugadorEditar = Object.assign({},jugador)
     this.modalRef = this.modalService.open(ModalEditarJugadorComponent, {
       data: {
-        "jugador":jugador
+        "jugador":jugadorEditar
       },
     });
   }

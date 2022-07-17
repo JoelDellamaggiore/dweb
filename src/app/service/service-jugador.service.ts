@@ -18,7 +18,7 @@ export class ServiceJugadorService {
     return this.http.get<Jugador[]>(this.API_URL+ 'listar');
   }
   actualizarJugador(jugador: Jugador): Observable<Jugador> {
-    return this.http.post<Jugador>(this.API_URL+'actualizar/'+jugador.legajo,jugador);
+    return this.http.put<Jugador>(this.API_URL+'actualizar/'+jugador.legajo,jugador);
   }
   guardarJugador(jugador: Jugador): Observable<Jugador> {
     return this.http.post<Jugador>(this.API_URL+'nuevo-jugador',jugador);

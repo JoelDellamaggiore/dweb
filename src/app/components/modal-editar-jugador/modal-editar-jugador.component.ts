@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Disciplina } from 'src/app/modelo/disciplina';
 import { Facultad } from 'src/app/modelo/facultad';
-import { Jugador } from 'src/app/modelo/jugador';
 import { Nacionalidad } from 'src/app/modelo/nacionalidad';
 import { ServiceJugadorService } from 'src/app/service/service-jugador.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-editar-jugador',
@@ -18,12 +19,11 @@ export class ModalEditarJugadorComponent implements OnInit {
   editar!: FormGroup;
   public mayorDeEdad:Date;
   public mayorDeEdadStr:String | null;
-  jugadorGuardar: Jugador = new Jugador();
   facultades: Facultad[] = [];
   disciplinas: Disciplina[] = [];
   nacionalidades: Nacionalidad[] = [];
-  constructor(private pd:DatePipe,private jugadorService: ServiceJugadorService,private fb: FormBuilder,public modalRef: MdbModalRef<ModalEditarJugadorComponent>) { 
-    this.crearFormulario();
+  constructor(private router:Router,private pd:DatePipe,private jugadorService: ServiceJugadorService,private fb: FormBuilder,public modalRef: MdbModalRef<ModalEditarJugadorComponent>) { 
+    this.formularioEditar();
   }
   
   
@@ -40,7 +40,7 @@ export class ModalEditarJugadorComponent implements OnInit {
     this.mayorDeEdad = new Date(new Date().getFullYear()-18,new Date().getMonth(),new Date().getDate());
     this.mayorDeEdadStr = this.pd.transform(this.mayorDeEdad,"yyyy-MM-dd");
   }
-  crearFormulario(){
+  formularioEditar(){
     this.editar = this.fb.group({
       nombre: ['',[Validators.required,Validators.pattern('[A-Z][a-z]{3,}')]],
       apellido: ['',[Validators.required,Validators.pattern('[A-Z][a-z]{3,}')]],
@@ -54,8 +54,32 @@ export class ModalEditarJugadorComponent implements OnInit {
       facultad:['',Validators.required],
     });
   };
-  guardarCambios(form:any){
-
+  guardarCambios(){
+    Swal.fire({
+      title: 'Desea actualizar el jugador del legajo ' + this.jugador.legajo + '?',
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No',
+      icon: 'question',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.jugadorService
+          .actualizarJugador(this.jugador)
+          .subscribe(response => Swal.fire({
+            icon: 'success',
+            title: 'Jugador actualizado',
+            text: 'El jugador ha sido actualizado con exito ',
+          }));
+      } else if (result.isDenied) {
+        Swal.fire('El jugador no ha sido actualizado', '', 'info')
+      }
+    })
   }
   compararNacionalidades(o1:Nacionalidad,o2:Nacionalidad): boolean{
     if(o1===undefined && o2 === undefined) return true;
@@ -68,6 +92,9 @@ export class ModalEditarJugadorComponent implements OnInit {
   compararDisciplinas(o1:Disciplina,o2:Disciplina): boolean{
     if(o1===undefined && o2 === undefined) return true;
     return o1===null||o2===null||o1===undefined||o2===undefined ? false: o1.codigo == o2.codigo;
+  }
+  cerrar(){
+    this.modalRef.close()
   }
 
 }

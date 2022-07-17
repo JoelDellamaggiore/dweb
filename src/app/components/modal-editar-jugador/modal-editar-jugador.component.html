@@ -4,12 +4,12 @@
     type="button"
     class="btn-close"
     aria-label="Close"
-    (click)="modalRef.close()"
+    (click)="cerrar()"
   ></button>
 </div>
 <div class="modal-body">
   <h4 class="mb-3">Datos Personales</h4>
-    <form [formGroup]="editar" (ngSubmit)="guardarCambios(f)" #f="ngForm">
+    <form [formGroup]="editar">
       <div class="row g-3">
         <div class="col-sm-6">
           <label for="nombre" class="form-label">Nombre</label>
@@ -48,18 +48,7 @@
             >DNI no valido</small
           >
         </div>
-        <div class="col-sm-6">
-          <label for="legajo" class="form-label">Legajo</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="legajo"
-            [(ngModel)]="jugador.legajo"
-          />
-          <small *ngIf="" class="text-danger"
-            >Legajo no valido</small
-          >
-        </div>
+        
         <div class="col-sm-6">
           <label for="telefono" class="form-label">Telefono</label>
           <input
@@ -137,8 +126,8 @@
     </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">
     Close
   </button>
-  <button type="submit" class="btn btn-primary">Save changes</button>
+  <button type="submit" class="btn btn-primary" (click)="guardarCambios()">Save changes</button>
 </div>
