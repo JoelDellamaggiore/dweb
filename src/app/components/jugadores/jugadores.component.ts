@@ -34,22 +34,10 @@ export class JugadoresComponent implements OnInit {
     this.pagina = 0;
     this.busqueda = busqueda;
   }
-  openModal(legajo:string,nombre:string,apellido:string,dni:string,fechaNacimiento:Date,facultad:object,disciplina:object,nacionalidad:object,telefono:string,email:string) {
-    const jugadorAEditar = {
-      legajo:legajo,
-      nombre:nombre,
-      apellido:apellido,
-      dni:dni,
-      fechaNacimiento:fechaNacimiento,
-      facultad:facultad,
-      disciplina:disciplina,
-      nacionalidad:nacionalidad,
-      telefono:telefono,
-      email:email
-    }
+  openModal(jugador:any) {
     this.modalRef = this.modalService.open(ModalEditarJugadorComponent, {
       data: {
-        "jugador":jugadorAEditar
+        "jugador":jugador
       },
     });
   }
