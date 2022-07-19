@@ -19,24 +19,25 @@ export class DisciplinasComponent implements OnInit {
     private modalService: MdbModalService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+  }
 
   ngOnInit(): void {
     this.discService
       .getDisciplina()
       .subscribe((response) => (this.disciplinas = response));
   }
-  openModal(codigo: string, nombre: string, descripcion: string) {
-    const discAEditar = {
-      codigo: codigo,
-      nombre: nombre,
-      descripcion: descripcion,
-    };
+  openModal(d:any) {
+    const discEditar = Object.assign({},d)
     this.modalRef = this.modalService.open(ModalEditComponent, {
       data: {
-        edit: discAEditar,
+        "edit":discEditar
       },
     });
+    
   }
 
   eliminarDisciplina(codigo: string) {
@@ -69,7 +70,7 @@ export class DisciplinasComponent implements OnInit {
                 confirmButton: 'order-2',
                 denyButton: 'order-3',
               },
-            });
+            })
           },
           (error) => {
             //Error callback
@@ -84,9 +85,5 @@ export class DisciplinasComponent implements OnInit {
       }
     });
   }
-  recargar() {
-    this.discService
-      .getDisciplina()
-      .subscribe((response) => (this.disciplinas = response));
-  }
+  
 }

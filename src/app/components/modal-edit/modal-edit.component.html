@@ -10,25 +10,23 @@
 </div>
 <div class="modal-body">
   <div class="container" >
-    <form >
-      <!-- Name input -->
-      <label class="form-label" for="form4Example1">Codigo</label>
-      <div class="form-group form-outline mb-4 ">
-        <input formControlName="codigo" type="text" name="codigo" class="form-control border border-dark " value="{{edit.codigo}}"  >
-      </div> 
-  
+    <form [formGroup]="editForm" #f="ngForm">
+     
       <!-- Email input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form4Example2">Nombre</label>
-        <input  formControlName="nombre" type="text" name="nombre"  class="form-control border border-dark " value="{{edit.nombre}}" >
+        <input  formControlName="nombre" type="text" name="nombre"  class="form-control"   [(ngModel)]="edit.nombre"  [class.is-invalid]="nombreNoValido">
+        <small *ngIf="nombreNoValido" class="text-danger"> Nombre Invalido</small>
       </div>
   
       <!-- Message input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form4Example3">Descripcion</label>
-        <textarea  formControlName="descripcion" class="form-control border border-dark "name="descripcion" rows="4" value="{{edit.descripcion}}"></textarea>
+        <textarea  formControlName="descripcion" class="form-control"name="descripcion" rows="4"  [(ngModel)]="edit.descripcion" [class.is-invalid]="descNoValido"></textarea>
+        <small *ngIf="descNoValido" class="text-danger"> Descripcion Invalido</small>
       </div>
   
+     
      
     </form>
   </div>
@@ -39,6 +37,6 @@
   <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
     Close
   </button>
-  <button type="button" class="btn btn-primary">Actualizar</button>
+  <button type="button" class="btn btn-primary" (click)="actualizarDisciplina(f)">Actualizar</button>
 </div>
 

@@ -21,12 +21,7 @@ export class NuevaDisciplinaComponent implements OnInit {
       descripcion: new FormControl(null, Validators.required),
     });
   }
-  crearDisciplina() {
-    this.disciplinaService
-      .obtenerDisciplina(this.disciplina.codigo)
-      .subscribe((response) => console.log('delalindo'));
-    // this.disciplinaService.crearDisciplina(this.disciplina).subscribe(response=>console.log("exitoso"));
-  }
+  
 
   public get nombreNoValido() {
     return (

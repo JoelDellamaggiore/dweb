@@ -86,8 +86,12 @@ export class NuevoJugadorComponent implements OnInit {
       facultad:['',Validators.required],
     });
   };
+
+
+
   guardarJugador(form: any){
     if(form.invalid) {
+     
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -98,6 +102,7 @@ export class NuevoJugadorComponent implements OnInit {
       });
     }
     if(form.valid) {
+
       this.jugadorService
       .guardarJugador(this.jugador)
       .subscribe(response => Swal.fire({

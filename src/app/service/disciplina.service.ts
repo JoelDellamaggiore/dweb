@@ -29,4 +29,8 @@ export class DisciplinaService {
   obtenerDisciplina(codigo:String): Observable<Disciplina[]>{
     return this.http.get<Disciplina[]>(this.url+'/' + codigo);
   }
+
+  actualizarDisciplina(disc:Disciplina) : Observable<Disciplina>{
+    return this.http.put<Disciplina>(this.url+'/actualizar/'+disc.codigo,disc);
+  }
 }
