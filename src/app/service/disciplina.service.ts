@@ -22,4 +22,9 @@ export class DisciplinaService {
     return this.http.post<Disciplina>(this.url + "/crear", disc);
 
   }
+
+  eliminarDisciplina(codigo:String): Observable<any>{
+    return this.http.delete<any>(this.url + '/eliminar/' +codigo);
+  }
+ 
 }
