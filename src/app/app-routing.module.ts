@@ -12,11 +12,12 @@ const routes: Routes = [
   { path: 'nuevo-jugador', component: NuevoJugadorComponent },
   { path: 'jugadores', component: JugadoresComponent },
   { path: 'disciplina', component: DisciplinasComponent },
-  { path: 'nueva-disciplina', component: NuevaDisciplinaComponent }
+  { path: 'nueva-disciplina', component: NuevaDisciplinaComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'})],
   exports: [RouterModule],
+  
 })
 export class AppRoutingModule {}

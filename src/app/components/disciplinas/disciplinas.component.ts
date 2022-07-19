@@ -4,6 +4,7 @@ import { DisciplinaService } from 'src/app/service/disciplina.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 import Swal from 'sweetalert2';
+import {Router, NavigationEnd,ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-disciplinas',
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
 export class DisciplinasComponent implements OnInit {
   modalRef: MdbModalRef<ModalEditComponent> | null = null;
   disciplinas : Disciplina[]=[];
-  constructor(private discService: DisciplinaService, private modalService: MdbModalService) { }
+  constructor(private discService: DisciplinaService, private modalService: MdbModalService,private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.discService.getDisciplina()
@@ -53,14 +54,20 @@ export class DisciplinasComponent implements OnInit {
             icon: 'success',
             title: 'Disciplina eliminada',
             text: 'La disciplina ha sido eliminada con exito ',
-          }));
+          }).then(() =>{  let currentUrl = this.router.url;
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload';
+            this.router.navigate([currentUrl]);}));
+        
       } else if (result.isDenied) {
         Swal.fire('La disciplina no ha sido eliminada', '', 'info')
       }
     })
 
   }
-
+  refreshComponent(){
+    this.router.navigate([this.router.url])
+ }
 
 
 
