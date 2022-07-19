@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -26,6 +27,10 @@ public class disciplinaController {
     public ResponseEntity<List<Disciplina>> listarDisciplinas() {
         // se pone el http status para devolver que la peticion fue exitosa
         return new ResponseEntity<>(disciplinaService.findAll(), HttpStatus.OK);
+    }
+    @GetMapping("/{codigo}")
+    public ResponseEntity<Disciplina> obtenerDisciplina(@PathVariable String codigo){
+        return new ResponseEntity<>(disciplinaService.findById(codigo),HttpStatus.OK);
     }
 
     // sirve para insertar datos
@@ -61,4 +66,6 @@ public class disciplinaController {
         disciplinaService.delete(codigo);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+   
+    
 }

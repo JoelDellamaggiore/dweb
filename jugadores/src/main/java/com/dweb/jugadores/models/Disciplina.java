@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "disciplina")
 public class Disciplina {
     @Id
-    @Column(name = "CODIGO", nullable = false)
+    @Column(name = "CODIGO", nullable = false,unique=true)
     private String codigo;
     private String nombre;
     private String descripcion;

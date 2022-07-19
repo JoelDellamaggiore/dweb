@@ -26,5 +26,7 @@ export class DisciplinaService {
   eliminarDisciplina(codigo:String): Observable<any>{
     return this.http.delete<any>(this.url + '/eliminar/' +codigo);
   }
- 
+  obtenerDisciplina(codigo:String): Observable<Disciplina[]>{
+    return this.http.get<Disciplina[]>(this.url+'/' + codigo);
+  }
 }

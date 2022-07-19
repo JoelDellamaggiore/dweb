@@ -7,53 +7,74 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nueva-disciplina',
   templateUrl: './nueva-disciplina.component.html',
-  styleUrls: ['./nueva-disciplina.component.css']
+  styleUrls: ['./nueva-disciplina.component.css'],
 })
 export class NuevaDisciplinaComponent implements OnInit {
-  discForm : FormGroup
-  disciplina : Disciplina= new Disciplina();
-  constructor(private disciplinaService: DisciplinaService) { }
+  discForm: FormGroup;
+  disciplina: Disciplina = new Disciplina();
+  constructor(private disciplinaService: DisciplinaService) {}
 
   ngOnInit(): void {
+    this.discForm = new FormGroup({
+      codigo: new FormControl(null, Validators.required),
+      nombre: new FormControl(null, Validators.required),
+      descripcion: new FormControl(null, Validators.required),
+    });
+  }
+  crearDisciplina() {
+    this.disciplinaService
+      .obtenerDisciplina(this.disciplina.codigo)
+      .subscribe((response) => console.log('delalindo'));
+    // this.disciplinaService.crearDisciplina(this.disciplina).subscribe(response=>console.log("exitoso"));
+  }
 
-    this.discForm= new FormGroup({
-      'codigo': new FormControl(null,Validators.required),
-      'nombre':new FormControl(null,Validators.required),
-      'descripcion': new FormControl(null,Validators.required)
-    });
+  public get nombreNoValido() {
+    return (
+      this.discForm.get('nombre')?.invalid &&
+      this.discForm.get('nombre')?.touched
+    );
   }
-crearDisciplina(){
-  this.disciplinaService.crearDisciplina(this.disciplina).subscribe(response=>console.log("exitoso"));
-}
-
-public get nombreNoValido() {
-  return this.discForm.get('nombre')?.invalid && this.discForm.get('nombre')?.touched;
-}
-public get codigoNoValido() {
-  return this.discForm.get('codigo')?.invalid && this.discForm.get('codigo')?.touched;
-}
-public get descNoValido() {
-  return this.discForm.get('descripcion')?.invalid && this.discForm.get('descripcion')?.touched;
-}
-guardarDisciplina(form: any){
-  if(form.invalid) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Faltan datos!',
-    });
-    return Object.values(this.discForm.controls).forEach(control =>{
-      control.markAsTouched();
-    });
+  public get codigoNoValido() {
+    return (
+      this.discForm.get('codigo')?.invalid &&
+      this.discForm.get('codigo')?.touched
+    );
   }
-  if(form.valid) {
-    this.disciplinaService.crearDisciplina(this.disciplina)
-    .subscribe(response => Swal.fire({
-      icon: 'success',
-      title: 'Disciplina registrado',
-      text: 'La disciplina ha sido creada con exito ',
-    }));
+  public get descNoValido() {
+    return (
+      this.discForm.get('descripcion')?.invalid &&
+      this.discForm.get('descripcion')?.touched
+    );
   }
-  
-};
+  guardarDisciplina(form: any) {
+    if (form.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Faltan datos!',
+      });
+      return Object.values(this.discForm.controls).forEach((control) => {
+        control.markAsTouched();
+      });
+    }
+    if (form.valid) {
+      this.disciplinaService
+        .obtenerDisciplina(this.disciplina.codigo)
+        .subscribe((response) => {
+          if (response === null) {
+            this.disciplinaService
+              .crearDisciplina(this.disciplina)
+              .subscribe((response) =>
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Disciplina registrado',
+                  text: 'La disciplina ha sido creada con exito ',
+                })
+              );
+          } else {
+            Swal.fire('No se pueden crear 2 disciplinas con el mismo codigo', '', 'error');
+          }
+        });
+    }
+  }
 }
