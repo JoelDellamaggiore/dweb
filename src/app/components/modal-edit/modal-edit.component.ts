@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Disciplina } from 'src/app/modelo/disciplina';
 import { DisciplinaService } from 'src/app/service/disciplina.service';
@@ -15,7 +16,10 @@ export class ModalEditComponent implements OnInit {
   editForm: FormGroup;
 
   edit: any;
-  constructor(public modalRef: MdbModalRef<ModalEditComponent>,private disciplinaService: DisciplinaService) { }
+  constructor(public modalRef: MdbModalRef<ModalEditComponent>,private disciplinaService: DisciplinaService, private router: Router,
+    private route: ActivatedRoute) { 
+
+  }
   ngOnInit(): void {
     this.editForm = new FormGroup({
       nombre: new FormControl(null, Validators.required),
@@ -63,5 +67,12 @@ export class ModalEditComponent implements OnInit {
               );
         });
     }
+  }
+  recargarPagina(){
+    this.router.routeReuseStrategy.shouldReuseRoute = ()=> false;
+    
+    this.router.navigate(['disciplina'], {relativeTo: this.route, queryParamsHandling : "merge"})
+    console.log('anda');
+    
   }
 }
