@@ -17,6 +17,8 @@ export class DisciplinasComponent implements OnInit {
   constructor(
     private discService: DisciplinaService,
     private modalService: MdbModalService,
+    private router: Router,
+    private route: ActivatedRoute
 
   ) {
    
@@ -67,7 +69,7 @@ export class DisciplinasComponent implements OnInit {
                 confirmButton: 'order-2',
                 denyButton: 'order-3',
               },
-            })
+            }).then(()=>this.recargarPagina())
           },
           (error) => {
             //Error callback
@@ -83,4 +85,10 @@ export class DisciplinasComponent implements OnInit {
     });
   }
   
+  recargarPagina(){
+    this.router.routeReuseStrategy.shouldReuseRoute = ()=> false;
+    
+    this.router.navigate(['./'], {relativeTo: this.route, queryParamsHandling : "merge"})
+    
+  }
 }
