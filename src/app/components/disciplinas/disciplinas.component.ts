@@ -17,12 +17,9 @@ export class DisciplinasComponent implements OnInit {
   constructor(
     private discService: DisciplinaService,
     private modalService: MdbModalService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+
   ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => {
-      return false;
-    };
+   
   }
 
   ngOnInit(): void {

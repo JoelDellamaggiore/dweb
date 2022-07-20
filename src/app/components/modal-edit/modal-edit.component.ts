@@ -5,6 +5,7 @@ import { Disciplina } from 'src/app/modelo/disciplina';
 import { DisciplinaService } from 'src/app/service/disciplina.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-modal-edit',
   templateUrl: './modal-edit.component.html',
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class ModalEditComponent implements OnInit {
   editForm: FormGroup;
- 
+
   edit: any;
   constructor(public modalRef: MdbModalRef<ModalEditComponent>,private disciplinaService: DisciplinaService) { }
   ngOnInit(): void {

@@ -23,6 +23,7 @@ import {CommonModule } from '@angular/common';
 import { FiltroPipe } from './filtro.pipe';
 import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,8 +49,10 @@ import { ModalEditComponent } from './components/modal-edit/modal-edit.component
     NoopAnimationsModule,
     CommonModule,
     OverlayModule
-   
+  
+  
   ],
+  
   providers: [DatePipe,MdbModalService],
   bootstrap: [AppComponent]
 })
