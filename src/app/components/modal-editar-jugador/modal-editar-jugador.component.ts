@@ -99,12 +99,7 @@ export class ModalEditarJugadorComponent implements OnInit {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-<<<<<<< HEAD
         this.jugador.fechaNacimiento = moment(this.jugador.fechaNacimiento).toDate();
-=======
-        var doo = new Date(this.jugador.fechaNacimiento);
-        this.jugador.fechaNacimiento=  new Date( doo.getTime() - doo.getTimezoneOffset() * -60000 )  ;
->>>>>>> 3b7668775f1160ad082eb39c7774f4df7666ea9d
         this.jugadorService
           .actualizarJugador(this.jugador)
           .subscribe(response => Swal.fire({
