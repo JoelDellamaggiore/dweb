@@ -88,8 +88,10 @@ export class NuevoJugadorComponent implements OnInit {
       facultad: ['', Validators.required],
     });
   };
+  
   guardarJugador(form: any) {
     if (form.invalid) {
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -126,7 +128,6 @@ export class NuevoJugadorComponent implements OnInit {
           Swal.fire('El jugador no ha sido creado', '', 'info')
         }
       })
-
     }
 
   };

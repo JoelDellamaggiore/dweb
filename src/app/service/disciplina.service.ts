@@ -22,4 +22,15 @@ export class DisciplinaService {
     return this.http.post<Disciplina>(this.url + "/crear", disc);
 
   }
+
+  eliminarDisciplina(codigo:String): Observable<any>{
+    return this.http.delete<any>(this.url + '/eliminar/' +codigo);
+  }
+  obtenerDisciplina(codigo:String): Observable<Disciplina[]>{
+    return this.http.get<Disciplina[]>(this.url+'/' + codigo);
+  }
+
+  actualizarDisciplina(disc:Disciplina) : Observable<Disciplina>{
+    return this.http.put<Disciplina>(this.url+'/actualizar/'+disc.codigo,disc);
+  }
 }

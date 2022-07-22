@@ -19,6 +19,8 @@
                     id="action-button"
                     class="btn btn-outline-danger"
                     type="button"
+                    (click)="eliminarDisciplina(d.codigo)"
+                  
                   >
                     Eliminar
                   </button>
@@ -28,11 +30,12 @@
                  id="action-button"
                  class="btn btn-secondary"
                  type="button"
-                 (click)="openModal(d.codigo,d.nombre,d.descripcion)"
+                 (click)="openModal(d)"
                >
                  Editar
                </button>
        </td>
+      
         </tr>
       
     
