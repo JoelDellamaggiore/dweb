@@ -19,7 +19,7 @@
             formControlName="nombre"
             [(ngModel)]="jugador.nombre"
           />
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="nombreNoValido" class="text-danger"
             >Nombre no valido</small
           >
         </div>
@@ -32,7 +32,7 @@
             formControlName="apellido"
             [(ngModel)]="jugador.apellido"
           />
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="apellidoNoValido" class="text-danger"
             >Apellido no valido</small
           >
         </div>
@@ -44,7 +44,7 @@
             formControlName="dni"
             [(ngModel)]="jugador.dni"
           />
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="dniNoValido" class="text-danger"
             >DNI no valido</small
           >
         </div>
@@ -57,7 +57,7 @@
             formControlName="telefono"
             [(ngModel)]="jugador.telefono"
           />
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="telefonoNoValido" class="text-danger"
             >Telefono no valido</small
           >
         </div>
@@ -69,7 +69,7 @@
             formControlName="email"
             [(ngModel)]="jugador.email"
           />
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="emailNoValido" class="text-danger"
             >Email no valido</small
           >
         </div>
@@ -78,7 +78,7 @@
           <select [(ngModel)]="jugador.nacionalidad" [compareWith]="compararNacionalidades" class="form-control" name="nacionalidad" [class.is-invalid]="" formControlName="nacionalidad">
             <option *ngFor="let nacionalidad of nacionalidades" [ngValue]="nacionalidad">{{nacionalidad.nombre}}</option>
           </select>
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="nacionalidadNoValido" class="text-danger"
             >Seleccione la nacionalidad del jugador</small
           >
         </div>
@@ -93,7 +93,7 @@
             [(ngModel)]="jugador.fechaNacimiento"
             [max]="mayorDeEdadStr"
           />
-          <small *ngIf="" class="text-danger"
+          <small *ngIf="fechaNacimientoNoValido" class="text-danger"
             >Seleccione la fecha de nacimiento del jugador</small
           >
         </div>
@@ -106,7 +106,7 @@
         <select [(ngModel)]="jugador.facultad" [compareWith]="compararFacultades" class="form-control" name="facultad" [class.is-invalid]="" formControlName="facultad">
           <option *ngFor="let facultad of facultades" [ngValue]="facultad">{{facultad.nombre}}</option>
         </select>
-        <small *ngIf="" class="text-danger"
+        <small *ngIf="facultadNoValido" class="text-danger"
             >Seleccione la facultad del jugador</small
           >
       </div>
@@ -118,7 +118,7 @@
         <select [(ngModel)]="jugador.disciplina" [compareWith]="compararDisciplinas" class="form-control" name="disciplina" [class.is-invalid]="" formControlName="disciplina">
           <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina">{{disciplina.nombre}}</option>
         </select>
-        <small *ngIf="" class="text-danger"
+        <small *ngIf="disciplinaNoValido" class="text-danger"
             >Seleccione la disciplina del jugador</small
           >
       </div>

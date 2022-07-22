@@ -8,6 +8,8 @@ import { Facultad } from 'src/app/modelo/facultad';
 import { Nacionalidad } from 'src/app/modelo/nacionalidad';
 import { ServiceJugadorService } from 'src/app/service/service-jugador.service';
 import Swal from 'sweetalert2';
+import { Moment } from 'moment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-modal-editar-jugador',
@@ -40,6 +42,34 @@ export class ModalEditarJugadorComponent implements OnInit {
     this.mayorDeEdad = new Date(new Date().getFullYear()-18,new Date().getMonth(),new Date().getDate());
     this.mayorDeEdadStr = this.pd.transform(this.mayorDeEdad,"yyyy-MM-dd");
   }
+  public get nombreNoValido() {
+    return this.editar.get('nombre')?.invalid && this.editar.get('nombre')?.touched;
+  }
+  public get apellidoNoValido() {
+    return this.editar.get('apellido')?.invalid && this.editar.get('apellido')?.touched;
+  }
+  public get dniNoValido() {
+    return this.editar.get('dni')?.invalid && this.editar.get('dni')?.touched;
+  }
+  public get telefonoNoValido() {
+    return this.editar.get('telefono')?.invalid && this.editar.get('telefono')?.touched;
+  }
+  public get emailNoValido() {
+    return this.editar.get('email')?.invalid && this.editar.get('email')?.touched;
+  }
+  public get fechaNacimientoNoValido() {
+    return this.editar.get('fechaNacimiento')?.invalid && this.editar.get('fechaNacimiento')?.touched;
+  }
+  public get nacionalidadNoValido() {
+    return this.editar.get('nacionalidad')?.invalid && this.editar.get('nacionalidad')?.touched;
+  }
+  public get disciplinaNoValido() {
+    return this.editar.get('disciplina')?.invalid && this.editar.get('disciplina')?.touched;
+  }
+  public get facultadNoValido() {
+    return this.editar.get('facultad')?.invalid && this.editar.get('facultad')?.touched;
+  }
+  
   formularioEditar(){
     this.editar = this.fb.group({
       nombre: ['',[Validators.required,Validators.pattern('[A-Z][a-z]{3,}')]],
@@ -69,6 +99,7 @@ export class ModalEditarJugadorComponent implements OnInit {
       }
     }).then((result) => {
       if (result.isConfirmed) {
+        this.jugador.fechaNacimiento = moment(this.jugador.fechaNacimiento).toDate();
         this.jugadorService
           .actualizarJugador(this.jugador)
           .subscribe(response => Swal.fire({
