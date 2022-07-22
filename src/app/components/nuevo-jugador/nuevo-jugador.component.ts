@@ -88,10 +88,19 @@ export class NuevoJugadorComponent implements OnInit {
       facultad: ['', Validators.required],
     });
   };
+<<<<<<< HEAD
   
   guardarJugador(form: any) {
     if (form.invalid) {
 
+=======
+
+
+
+  guardarJugador(form: any){
+    if(form.invalid) {
+     
+>>>>>>> 3b7668775f1160ad082eb39c7774f4df7666ea9d
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -101,6 +110,7 @@ export class NuevoJugadorComponent implements OnInit {
         control.markAsTouched();
       });
     }
+<<<<<<< HEAD
     if (form.valid) {
       Swal.fire({
         title: 'Desea agregar el jugador del legajo ' + this.jugador.legajo + '?',
@@ -128,6 +138,17 @@ export class NuevoJugadorComponent implements OnInit {
           Swal.fire('El jugador no ha sido creado', '', 'info')
         }
       })
+=======
+    if(form.valid) {
+
+      this.jugadorService
+      .guardarJugador(this.jugador)
+      .subscribe(response => Swal.fire({
+        icon: 'success',
+        title: 'Jugador registrado',
+        text: 'El jugador ha sido guardado con exito ',
+      }));
+>>>>>>> 3b7668775f1160ad082eb39c7774f4df7666ea9d
     }
 
   };
