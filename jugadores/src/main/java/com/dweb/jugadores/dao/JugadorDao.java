@@ -11,6 +11,6 @@ public interface JugadorDao extends JpaRepository<Jugador, String>{
 
   @Query("SELECT j FROM jugador j WHERE " +
   "Upper(j.nombre) LIKE CONCAT('%',:filtro, '%')"  )
-   List<Jugador> search(String filtro,String filtroDisc );
+   List<Jugador> search(String filtro );
 
 }

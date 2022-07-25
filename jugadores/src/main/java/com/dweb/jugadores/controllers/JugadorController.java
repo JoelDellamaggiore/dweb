@@ -94,7 +94,7 @@ public class JugadorController {
 
   
     @GetMapping("/search")
-    public ResponseEntity<List<Jugador>> search(@RequestParam("filtro") String filtro, @RequestParam("filtroDisc") String filtroDisc){
-        return ResponseEntity.ok(jugadorService.searchJugador(filtro,filtroDisc));
+    public ResponseEntity<List<Jugador>> search(@RequestParam("filtro") String filtro){
+        return ResponseEntity.ok(jugadorService.searchJugador(filtro));
     }
 }

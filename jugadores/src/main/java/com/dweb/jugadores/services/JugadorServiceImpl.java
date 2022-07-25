@@ -32,8 +32,8 @@ public class JugadorServiceImpl implements JugadorService {
     }
 
     @Override
-    public List<Jugador> searchJugador(String filtro, String filtroDisc) {
-        List<Jugador> jugador = jugadorDao.search(filtro.toUpperCase(), filtroDisc);
+    public List<Jugador> searchJugador(String filtro) {
+        List<Jugador> jugador = jugadorDao.search(filtro.toUpperCase());
         return jugador;
     }
 

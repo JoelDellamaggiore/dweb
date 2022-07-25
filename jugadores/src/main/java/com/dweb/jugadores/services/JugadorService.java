@@ -11,7 +11,7 @@ public interface JugadorService {
     public Jugador findById(String legajo);
     public List<Jugador> findAll();
     public void delete(String legajo);
-    List<Jugador> searchJugador(String filtro, String filtroDisc);
+    List<Jugador> searchJugador(String filtro);
 
 
 }
