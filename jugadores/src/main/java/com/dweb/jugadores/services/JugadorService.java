@@ -2,8 +2,6 @@ package com.dweb.jugadores.services;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-
 import com.dweb.jugadores.models.Jugador;
 
 public interface JugadorService {
@@ -12,6 +10,5 @@ public interface JugadorService {
     public List<Jugador> findAll();
     public void delete(String legajo);
     List<Jugador> searchJugador(String filtro);
-
-
+    List<Jugador> searchCombosJugador(String disciplinaSeleccionada,String nacionalidadSeleccionada,String facultadSeleccionada);
 }

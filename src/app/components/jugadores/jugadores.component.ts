@@ -21,6 +21,9 @@ export class JugadoresComponent implements OnInit {
   facultades: Facultad[] = [];
   disciplinas: Disciplina[] = [];
   nacionalidades: Nacionalidad[] = [];
+  disciplinaSeleccionada: string = "";
+  nacionalidadSeleccionada: string = "";
+  facultadSeleccionada: string = "";
   constructor(private jugadorservicio: ServiceJugadorService, private modalService: MdbModalService) { }
 
   ngOnInit(): void {
@@ -64,11 +67,12 @@ export class JugadoresComponent implements OnInit {
       if (result.isConfirmed) {
         this.jugadorservicio
           .eliminarJugador(legajo)
-          .subscribe(response => Swal.fire({
+          .subscribe(response => this.busqueda(""));
+          Swal.fire({
             icon: 'success',
             title: 'Jugador eliminado',
             text: 'El jugador ha sido eliminado con exito ',
-          }));
+          })
       } else if (result.isDenied) {
         Swal.fire('El jugador no ha sido eliminado', '', 'info')
       }
@@ -79,5 +83,16 @@ export class JugadoresComponent implements OnInit {
    this.jugadorservicio
     .search(filter)
     .subscribe((result)=>{this.jugador=result});
+  }
+  busquedaCombos(){
+    if(this.disciplinaSeleccionada == "" && this.facultadSeleccionada == "" && this.nacionalidadSeleccionada == ""){
+      this.jugadorservicio
+      .getJugadores()
+      .subscribe((response) => (this.jugador = response));
+    }else{
+      this.jugadorservicio
+      .searchCombos(this.disciplinaSeleccionada,this.facultadSeleccionada,this.nacionalidadSeleccionada)
+      .subscribe((result)=>{this.jugador=result});
+    }
   }
 }

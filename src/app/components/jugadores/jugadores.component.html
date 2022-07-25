@@ -6,46 +6,41 @@
       </div>
       <div class="row mb-2">
         <div class="col-2">
-          <input id="filtro"  type="text" class="form-control" #filter >
+          <input id="filtro" type="text" class="form-control" #filter>
         </div>
         <div class="col-1 text-start">
-          <button class="btn btn-outline-secondary" type="button" (click)="busqueda(filter.value)"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button class="btn btn-outline-primary" type="button" (click)="busqueda(filter.value)"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="col-2">
-          <select id="disciplina" class="form-select text-center">
+          <select id="disciplina" [(ngModel)]="disciplinaSeleccionada" class="form-select text-center">
             <option value="">=== Disciplinas ===</option>
-            <option *ngFor="let n of disciplinas" [ngValue]="n">
+            <option *ngFor="let n of disciplinas" [ngValue]="n.codigo">
               {{n.nombre}}
             </option>
           </select>
         </div>
         <div class="col-2">
-          <select id="localidad" class="form-select text-center">
+          <select id="localidad" [(ngModel)]="facultadSeleccionada" class="form-select text-center">
             <option value="">=== Facultades ===</option>
-            <option *ngFor="let n of facultades" [ngValue]="n">
+            <option *ngFor="let n of facultades" [ngValue]="n.codigo">
               {{n.nombre}}
             </option>
           </select>
         </div>
         <div class="col-2">
-          <select id="nacionalidad" class="form-select text-center">
+          <select id="nacionalidad" [(ngModel)]="nacionalidadSeleccionada" class="form-select text-center">
             <option value="">=== Nacionalidades ===</option>
-            <option *ngFor="let n of nacionalidades" [ngValue]="n">
+            <option *ngFor="let n of nacionalidades" [ngValue]="n.codigo">
               {{n.nombre}}
             </option>
           </select>
         </div>
-        <div class="col-2">
-          <select id="items" class="form-select text-center">
-            <option value=3>= Ver 3 resultados por pagina =</option>
-            <option value=5>= Ver 5 resultados por pagina =</option>
-            <option value=8>= Ver 8 resultados por pagina =</option>
-          </select>
+        <div class="col-1 text-start">
+          <button class="btn btn-outline-primary" type="button" (click)="busquedaCombos()"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <div class="col-1 text-end">
-          <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-circle-left"></i></button>
-          <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-circle-right"></i></button>
-        </div>
+
       </div>
       <div class="row mb-2">
         <div class="col-12">
@@ -90,8 +85,24 @@
                         </button>
                       </td>
                     </tr>
+
                   </tbody>
                 </table>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-12 mt-2">
+            <div class="row">
+              <div class="col-6 text-end">
+                <button class="btn btn-outline-primary" type="button"><i class="fa-solid fa-circle-left"></i></button>
+
+              </div>
+              <div class="col-6 text-start">
+
+                <button class="btn btn-outline-primary" type="button"><i
+                    class="fa-solid fa-circle-right"></i></button>
               </div>
             </div>
           </div>

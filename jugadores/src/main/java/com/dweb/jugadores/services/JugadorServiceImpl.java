@@ -37,6 +37,13 @@ public class JugadorServiceImpl implements JugadorService {
         return jugador;
     }
 
+    @Override
+    public List<Jugador> searchCombosJugador(String disciplinaSeleccionada, String nacionalidadSeleccionada,
+            String facultadSeleccionada) {
+                List<Jugador> jugador = jugadorDao.searchCombos(disciplinaSeleccionada,nacionalidadSeleccionada,facultadSeleccionada);
+                return jugador;
+    }
+
   
     
     

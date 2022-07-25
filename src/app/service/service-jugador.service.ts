@@ -42,4 +42,7 @@ export class ServiceJugadorService {
   search(filtro:string): Observable<Jugador[]>{
     return this.http.get<Jugador[]>(this.API_URL+'search?filtro='+filtro);
   }
+  searchCombos(disciplina:string,facultad:string,nacionalidad:string): Observable<Jugador[]>{
+    return this.http.get<Jugador[]>(this.API_URL+'searchCombos?disciplina='+disciplina+'&facultad='+facultad+'&nacionalidad='+nacionalidad);
+  }
 }

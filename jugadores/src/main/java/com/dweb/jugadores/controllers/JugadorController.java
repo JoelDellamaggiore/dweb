@@ -97,4 +97,8 @@ public class JugadorController {
     public ResponseEntity<List<Jugador>> search(@RequestParam("filtro") String filtro){
         return ResponseEntity.ok(jugadorService.searchJugador(filtro));
     }
+    @GetMapping("/searchCombos")
+    public ResponseEntity<List<Jugador>> searchCombos(@RequestParam("disciplina") String disciplinaSeleccionada,@RequestParam("nacionalidad") String nacionalidadSeleccionada,@RequestParam("facultad") String facultadSeleccionada){
+        return ResponseEntity.ok(jugadorService.searchCombosJugador(disciplinaSeleccionada,nacionalidadSeleccionada,facultadSeleccionada));
+    }
 }
