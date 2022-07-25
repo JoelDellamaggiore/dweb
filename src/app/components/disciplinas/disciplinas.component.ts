@@ -69,7 +69,7 @@ export class DisciplinasComponent implements OnInit {
                 confirmButton: 'order-2',
                 denyButton: 'order-3',
               },
-            }).then(()=>this.recargarPagina())
+            }).then()
           },
           (error) => {
             //Error callback
@@ -83,12 +83,5 @@ export class DisciplinasComponent implements OnInit {
         Swal.fire('La disciplina no ha sido eliminada', '', 'info');
       }
     });
-  }
-  
-  recargarPagina(){
-    this.router.routeReuseStrategy.shouldReuseRoute = ()=> false;
-    
-    this.router.navigate(['./'], {relativeTo: this.route, queryParamsHandling : "merge"})
-    
   }
 }

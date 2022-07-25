@@ -1,69 +1,100 @@
-<div class="container">
-  <div class="text-center">
-    <h2>Lista de Jugadores</h2>
-  </div>
-  <div class="input-group mb-2">
-    <input type="text" class="form-control text-center" placeholder="Ingrese nombre de facultad o disciplina" #txtBusqueda (keyup)="filtrandoJugador(txtBusqueda.value)">
-    &nbsp;
-    <button class="btn btn-outline-secondary" type="button" (click)="anteriorPagina()"><i class="fa-solid fa-circle-left"></i></button>
-    &nbsp;
-    <button class="btn btn-outline-secondary" type="button" (click)="proximaPagina()" [disabled]="(jugador | filtro:pagina:busqueda).length === 0"><i class="fa-solid fa-circle-right"></i></button>
-  </div>
-  <div class="col-12">
-    <div class="card shadow-2-strong">
-      <div class="card-body p-0">
-        <div
-          class="table-responsive table-scroll"
-          data-mdb-perfect-scrollbar="false"
-        >
-          <table class="table table-dark mb-0">
-            <thead style="background-color: #393939">
-              <tr class="text-uppercase">
-                <th scope="col" class="column">Nombre y Apellido</th>
-                <th scope="col" class="column">DNI</th>
-                <th scope="col" class="column">Legajo</th>
-                <th scope="col" class="column">Fecha Nacimiento</th>
-                <th scope="col" class="column">Facultad</th>
-                <th scope="col" class="column">Disciplina</th>
-                <th scope="col" class="column">Nacionalidad</th>
-                <th scope="col" class="column">Telefono</th>
-                <th scope="col" class="column">Email</th>
-                <th scope="col" class="column">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let n of jugador | filtro:pagina:busqueda">
-                <td class="column">{{ n.nombre }} {{ n.apellido }}</td>
-                <td class="column">{{ n.dni }}</td>
-                <td class="column">{{ n.legajo }}</td>
-                <td class="column">{{ n.fechaNacimiento }}</td>
-                <td class="column">{{ n.facultad.nombre }}</td>
-                <td class="column">{{ n.disciplina.nombre }}</td>
-                <td class="column">{{ n.nacionalidad.nombre }}</td>
-                <td class="column">{{n.telefono}}</td>
-                <td class="column">{{n.email}}</td>
-                <td class="column">
-                  <button
-                    id="action-button"
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="openModal(n)"
-                  >
-                  Editar
-                  </button>
-                  
-                  <button
-                    id="action-button"
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="eliminarJugador(n.legajo)"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-center mb-3 mt-3">
+        <h2>Lista de Jugadores</h2>
+      </div>
+      <div class="row mb-2">
+        <div class="col-2">
+          <input id="filtro" type="text" class="form-control">
+        </div>
+        <div class="col-1 text-start">
+          <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="col-2">
+          <select id="disciplina" class="form-select text-center">
+            <option value="">=== Disciplinas ===</option>
+            <option *ngFor="let n of disciplinas" [ngValue]="n">
+              {{n.nombre}}
+            </option>
+          </select>
+        </div>
+        <div class="col-2">
+          <select id="localidad" class="form-select text-center">
+            <option value="">=== Facultades ===</option>
+            <option *ngFor="let n of facultades" [ngValue]="n">
+              {{n.nombre}}
+            </option>
+          </select>
+        </div>
+        <div class="col-2">
+          <select id="nacionalidad" class="form-select text-center">
+            <option value="">=== Nacionalidades ===</option>
+            <option *ngFor="let n of nacionalidades" [ngValue]="n">
+              {{n.nombre}}
+            </option>
+          </select>
+        </div>
+        <div class="col-2">
+          <select id="items" class="form-select text-center">
+            <option value=3>= Ver 3 resultados por pagina =</option>
+            <option value=5>= Ver 5 resultados por pagina =</option>
+            <option value=8>= Ver 8 resultados por pagina =</option>
+          </select>
+        </div>
+        <div class="col-1 text-end">
+          <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-circle-left"></i></button>
+          <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-circle-right"></i></button>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-12">
+          <div class="card shadow-2-strong">
+            <div class="card-body p-0">
+              <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="false">
+                <table class="table table-dark mb-0">
+                  <thead style="background-color: #393939">
+                    <tr class="text-uppercase">
+                      <th scope="col" class="column">Nombre y Apellido</th>
+                      <th scope="col" class="column">DNI</th>
+                      <th scope="col" class="column">Legajo</th>
+                      <th scope="col" class="column">Fecha Nacimiento</th>
+                      <th scope="col" class="column">Facultad</th>
+                      <th scope="col" class="column">Disciplina</th>
+                      <th scope="col" class="column">Nacionalidad</th>
+                      <th scope="col" class="column">Telefono</th>
+                      <th scope="col" class="column">Email</th>
+                      <th scope="col" class="column">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let n of jugador">
+                      <td class="column">{{ n.nombre }} {{ n.apellido }}</td>
+                      <td class="column">{{ n.dni }}</td>
+                      <td class="column">{{ n.legajo }}</td>
+                      <td class="column">{{ n.fechaNacimiento }}</td>
+                      <td class="column">{{ n.facultad.nombre }}</td>
+                      <td class="column">{{ n.disciplina.nombre }}</td>
+                      <td class="column">{{ n.nacionalidad.nombre }}</td>
+                      <td class="column">{{n.telefono}}</td>
+                      <td class="column">{{n.email}}</td>
+                      <td class="column">
+                        <button id="action-button" class="btn btn-outline-secondary" type="button"
+                          (click)="openModal(n)">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+
+                        <button id="action-button" class="btn btn-outline-secondary" type="button"
+                          (click)="eliminarJugador(n.legajo)">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

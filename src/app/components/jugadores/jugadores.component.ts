@@ -4,6 +4,9 @@ import Swal from 'sweetalert2';
 import { ServiceJugadorService } from '../../service/service-jugador.service';
 import { ModalEditarJugadorComponent } from '../modal-editar-jugador/modal-editar-jugador.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { Facultad } from 'src/app/modelo/facultad';
+import { Disciplina } from 'src/app/modelo/disciplina';
+import { Nacionalidad } from 'src/app/modelo/nacionalidad';
 
 
 @Component({
@@ -14,26 +17,26 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 export class JugadoresComponent implements OnInit {
   modalRef: MdbModalRef<ModalEditarJugadorComponent> | null = null;
   jugador: Jugador[] = [];
-  public pagina: number = 0;
-  public busqueda: string = '';
+  facultades: Facultad[] = [];
+  disciplinas: Disciplina[] = [];
+  nacionalidades: Nacionalidad[] = [];
   constructor(private jugadorservicio: ServiceJugadorService, private modalService: MdbModalService) { }
 
   ngOnInit(): void {
     this.jugadorservicio
       .getJugadores()
       .subscribe((response) => (this.jugador = response));
+      this.jugadorservicio
+      .getFacultades()
+      .subscribe((response) => (this.facultades = response));
+    this.jugadorservicio
+      .getDisciplinas()
+      .subscribe((response) => (this.disciplinas = response));
+    this.jugadorservicio
+      .getNacionalidades()
+      .subscribe((response) => (this.nacionalidades = response));
   }
-  proximaPagina(){
-    this.pagina += 1;
-  }
-  anteriorPagina(){
-    if(this.pagina > 0)
-      this.pagina -= 1;
-  }
-  filtrandoJugador(busqueda: string){
-    this.pagina = 0;
-    this.busqueda = busqueda;
-  }
+  
   openModal(jugador:any) {
     const jugadorEditar = Object.assign({},jugador)
     this.modalRef = this.modalService.open(ModalEditarJugadorComponent, {

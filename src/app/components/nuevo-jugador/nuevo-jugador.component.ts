@@ -102,32 +102,41 @@ export class NuevoJugadorComponent implements OnInit {
       });
     }
     if (form.valid) {
-      Swal.fire({
-        title: 'Desea agregar el jugador del legajo ' + this.jugador.legajo + '?',
-        showDenyButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: 'No',
-        icon: 'question',
-        customClass: {
-          actions: 'my-actions',
-          cancelButton: 'order-1 right-gap',
-          confirmButton: 'order-2',
-          denyButton: 'order-3',
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.jugador.fechaNacimiento = moment(this.jugador.fechaNacimiento).toDate();
-          this.jugadorService
-            .guardarJugador(this.jugador)
-            .subscribe(response => Swal.fire({
-              icon: 'success',
-              title: 'Jugador registrado',
-              text: 'El jugador ha sido creado con exito ',
-            }));
-        } else if (result.isDenied) {
-          Swal.fire('El jugador no ha sido creado', '', 'info')
-        }
-      })
+      this.jugadorService
+        .obtenerJugador(this.jugador.legajo)
+        .subscribe((response) => {
+          if (response === null) {
+            Swal.fire({
+              title: 'Desea agregar el jugador ' + this.jugador.nombre+" "+this.jugador.apellido + '?',
+              showDenyButton: true,
+              confirmButtonText: 'Si',
+              denyButtonText: 'No',
+              icon: 'question',
+              customClass: {
+                actions: 'my-actions',
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
+              }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.jugador.fechaNacimiento = moment(this.jugador.fechaNacimiento).toDate();
+                this.jugadorService
+                  .guardarJugador(this.jugador)
+                  .subscribe(response => Swal.fire({
+                    icon: 'success',
+                    title: 'Jugador registrado',
+                    text: 'El jugador ha sido creado con exito ',
+                  }));
+              } else if (result.isDenied) {
+                Swal.fire('El jugador no ha sido creado', '', 'info')
+              }
+            })
+          } else {
+            Swal.fire('No se pueden crear 2 jugadores con el mismo legajo', '', 'error');
+          }
+        });
+      
     }
 
   };

@@ -68,11 +68,4 @@ export class ModalEditComponent implements OnInit {
         });
     }
   }
-  recargarPagina(){
-    this.router.routeReuseStrategy.shouldReuseRoute = ()=> false;
-    
-    this.router.navigate(['disciplina'], {relativeTo: this.route, queryParamsHandling : "merge"})
-    console.log('anda');
-    
-  }
 }

@@ -57,15 +57,31 @@ export class NuevaDisciplinaComponent implements OnInit {
         .obtenerDisciplina(this.disciplina.codigo)
         .subscribe((response) => {
           if (response === null) {
-            this.disciplinaService
-              .crearDisciplina(this.disciplina)
-              .subscribe((response) =>
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Disciplina registrado',
-                  text: 'La disciplina ha sido creada con exito ',
-                })
-              );
+            Swal.fire({
+              title: 'Desea agregar la disciplina ' + this.disciplina.nombre + '?',
+              showDenyButton: true,
+              confirmButtonText: 'Si',
+              denyButtonText: 'No',
+              icon: 'question',
+              customClass: {
+                actions: 'my-actions',
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
+              }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.disciplinaService
+                  .crearDisciplina(this.disciplina)
+                  .subscribe(response => Swal.fire({
+                    icon: 'success',
+                    title: 'Disciplina registrada',
+                    text: 'La disciplina ha sido creada con exito ',
+                  }));
+              } else if (result.isDenied) {
+                Swal.fire('La disciplina no ha sido creada', '', 'info')
+              }
+            })
           } else {
             Swal.fire('No se pueden crear 2 disciplinas con el mismo codigo', '', 'error');
           }

@@ -13,14 +13,12 @@ import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
-
 import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
 import { NuevaDisciplinaComponent } from './components/nueva-disciplina/nueva-disciplina.component';
 import { FormsModule } from '@angular/forms';
 import { ModalEditarJugadorComponent } from './components/modal-editar-jugador/modal-editar-jugador.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {CommonModule } from '@angular/common';
-import { FiltroPipe } from './filtro.pipe';
 import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
 
 
@@ -35,9 +33,7 @@ import { ModalEditComponent } from './components/modal-edit/modal-edit.component
     DisciplinasComponent,
     NuevaDisciplinaComponent,
     ModalEditarJugadorComponent,
-    FiltroPipe,
     ModalEditComponent
-
   ],
   imports: [
     RouterModule,
@@ -49,8 +45,6 @@ import { ModalEditComponent } from './components/modal-edit/modal-edit.component
     NoopAnimationsModule,
     CommonModule,
     OverlayModule
-  
-  
   ],
   
   providers: [DatePipe,MdbModalService],
