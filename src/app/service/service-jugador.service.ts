@@ -38,4 +38,8 @@ export class ServiceJugadorService {
   eliminarJugador(legajo:string): Observable<any>{
     return this.http.delete<any>(this.API_URL+'eliminar/'+legajo);
   }
+
+  search(filtro:string): Observable<Jugador[]>{
+    return this.http.get<Jugador[]>(this.API_URL+'search?filtro='+filtro);
+  }
 }

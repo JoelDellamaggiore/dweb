@@ -6,10 +6,10 @@
       </div>
       <div class="row mb-2">
         <div class="col-2">
-          <input id="filtro" type="text" class="form-control">
+          <input id="filtro"  type="text" class="form-control" #filter >
         </div>
         <div class="col-1 text-start">
-          <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button class="btn btn-outline-secondary" type="button" (click)="busqueda(filter.value)"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="col-2">
           <select id="disciplina" class="form-select text-center">

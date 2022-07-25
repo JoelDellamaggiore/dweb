@@ -17,6 +17,7 @@ import { Nacionalidad } from 'src/app/modelo/nacionalidad';
 export class JugadoresComponent implements OnInit {
   modalRef: MdbModalRef<ModalEditarJugadorComponent> | null = null;
   jugador: Jugador[] = [];
+  jugadore: Jugador[] = [];
   facultades: Facultad[] = [];
   disciplinas: Disciplina[] = [];
   nacionalidades: Nacionalidad[] = [];
@@ -35,6 +36,7 @@ export class JugadoresComponent implements OnInit {
     this.jugadorservicio
       .getNacionalidades()
       .subscribe((response) => (this.nacionalidades = response));
+      
   }
   
   openModal(jugador:any) {
@@ -72,5 +74,10 @@ export class JugadoresComponent implements OnInit {
       }
     })
 
+  }
+  busqueda(filter:string){
+   this.jugadorservicio
+    .search(filter)
+    .subscribe((result)=>{this.jugador=result});
   }
 }
