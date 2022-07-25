@@ -30,5 +30,16 @@ public class JugadorServiceImpl implements JugadorService {
     public void delete(String legajo) {
         jugadorDao.deleteById(legajo);
     }
+
+    @Override
+    public List<Jugador> searchJugador(String filtro, String filtroDisc) {
+        List<Jugador> jugador = jugadorDao.search(filtro.toUpperCase(), filtroDisc);
+        return jugador;
+    }
+
+  
     
+    
+    
+
 }
