@@ -21,7 +21,7 @@ export class DisciplinasComponent implements OnInit {
     private route: ActivatedRoute
 
   ) {
-   
+
   }
 
   ngOnInit(): void {
@@ -29,14 +29,14 @@ export class DisciplinasComponent implements OnInit {
       .getDisciplina()
       .subscribe((response) => (this.disciplinas = response));
   }
-  openModal(d:any) {
-    const discEditar = Object.assign({},d)
+  openModal(d: any) {
+    const discEditar = Object.assign({}, d)
     this.modalRef = this.modalService.open(ModalEditComponent, {
       data: {
-        "edit":discEditar
+        "edit": discEditar
       },
     });
-    
+
   }
 
   eliminarDisciplina(codigo: string) {
@@ -57,19 +57,14 @@ export class DisciplinasComponent implements OnInit {
         this.discService.eliminarDisciplina(codigo).subscribe(
           (response) => {
             //Next callback
+            this.discService
+              .getDisciplina()
+              .subscribe((response) => (this.disciplinas = response));
             Swal.fire({
-              title: 'Desea eliminar el jugador del legajo ' + codigo + '?',
-              showDenyButton: true,
-              confirmButtonText: 'Si',
-              denyButtonText: 'No',
-              icon: 'question',
-              customClass: {
-                actions: 'my-actions',
-                cancelButton: 'order-1 right-gap',
-                confirmButton: 'order-2',
-                denyButton: 'order-3',
-              },
-            }).then()
+              icon: 'success',
+              title: 'Disciplina eliminada',
+              text: 'La disciplina ha sido eliminada con exito ',
+            })
           },
           (error) => {
             //Error callback
