@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dweb.jugadores.models.Disciplina;
@@ -51,6 +52,7 @@ public class JugadorController {
     //Endpoints sobre el jugador
     @GetMapping("/listar")
     public ResponseEntity<List<Jugador>> listarJugadores(){
+    
         return new ResponseEntity<>(jugadorService.findAll(),HttpStatus.OK);
     }
     @GetMapping("/{legajo}")
@@ -90,5 +92,9 @@ public class JugadorController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    
+  
+    @GetMapping("/search")
+    public ResponseEntity<List<Jugador>> search(@RequestParam("filtro") String filtro, @RequestParam("filtroDisc") String filtroDisc){
+        return ResponseEntity.ok(jugadorService.searchJugador(filtro,filtroDisc));
+    }
 }
