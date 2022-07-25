@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@Entity(name="jugador")
 @Table(name = "jugador")
 public class Jugador {
     @Id
