@@ -124,8 +124,4 @@ export class ModalEditarJugadorComponent implements OnInit {
     if(o1===undefined && o2 === undefined) return true;
     return o1===null||o2===null||o1===undefined||o2===undefined ? false: o1.codigo == o2.codigo;
   }
-  cerrar(){
-    this.modalRef.close()
-  }
-
 }

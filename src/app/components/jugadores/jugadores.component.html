@@ -40,6 +40,14 @@
           <button class="btn btn-outline-primary" type="button" (click)="busquedaCombos()"><i
               class="fa-solid fa-magnifying-glass"></i></button>
         </div>
+        <div class="col-2">
+          <select id="cuantosPorPagina" [(ngModel)]="cuantosPorPagina" class="form-select text-center" [disabled]="(pagina)>0">
+            <option [ngValue]="1">= Ver 1 resultado x Pagina =</option>
+            <option [ngValue]="3">= Ver 3 resultados x Pagina =</option>
+            <option [ngValue]="5">= Ver 5 resultados x Pagina =</option>
+          </select>
+        </div>
+
 
       </div>
       <div class="row mb-2">
@@ -63,7 +71,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let n of jugador">
+                    <tr *ngFor="let n of jugador|paginacion:pagina:cuantosPorPagina">
                       <td class="column">{{ n.nombre }} {{ n.apellido }}</td>
                       <td class="column">{{ n.dni }}</td>
                       <td class="column">{{ n.legajo }}</td>
@@ -96,12 +104,12 @@
           <div class="col-12 mt-2">
             <div class="row">
               <div class="col-6 text-end">
-                <button class="btn btn-outline-primary" type="button"><i class="fa-solid fa-circle-left"></i></button>
+                <button class="btn btn-outline-primary" type="button" (click)="anteriorPagina()" [disabled]="(pagina)===0"><i class="fa-solid fa-circle-left"></i></button>
 
               </div>
               <div class="col-6 text-start">
 
-                <button class="btn btn-outline-primary" type="button"><i
+                <button class="btn btn-outline-primary" type="button" (click)="proximaPagina()" [disabled]="(jugador|paginacion:pagina:cuantosPorPagina).length===0"><i
                     class="fa-solid fa-circle-right"></i></button>
               </div>
             </div>

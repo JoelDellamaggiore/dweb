@@ -7,6 +7,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Facultad } from 'src/app/modelo/facultad';
 import { Disciplina } from 'src/app/modelo/disciplina';
 import { Nacionalidad } from 'src/app/modelo/nacionalidad';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -24,7 +25,10 @@ export class JugadoresComponent implements OnInit {
   disciplinaSeleccionada: string = "";
   nacionalidadSeleccionada: string = "";
   facultadSeleccionada: string = "";
-  constructor(private jugadorservicio: ServiceJugadorService, private modalService: MdbModalService) { }
+  public pagina: number = 0;
+  public cuantosPorPagina: number = 1;
+  constructor(private jugadorservicio: ServiceJugadorService, private modalService: MdbModalService) { 
+  }
 
   ngOnInit(): void {
     this.jugadorservicio
@@ -39,7 +43,6 @@ export class JugadoresComponent implements OnInit {
     this.jugadorservicio
       .getNacionalidades()
       .subscribe((response) => (this.nacionalidades = response));
-      
   }
   
   openModal(jugador:any) {
@@ -49,6 +52,9 @@ export class JugadoresComponent implements OnInit {
         "jugador":jugadorEditar
       },
     });
+    this.modalRef.onClose.subscribe(()=>{this.jugadorservicio
+      .getJugadores()
+      .subscribe((response) => (this.jugador = response));});
   }
   eliminarJugador(legajo: string) {
     Swal.fire({
@@ -94,5 +100,12 @@ export class JugadoresComponent implements OnInit {
       .searchCombos(this.disciplinaSeleccionada,this.facultadSeleccionada,this.nacionalidadSeleccionada)
       .subscribe((result)=>{this.jugador=result});
     }
+  }
+  proximaPagina(){
+    this.pagina += this.cuantosPorPagina;
+  }
+  anteriorPagina(){
+    if(this.pagina > 0)
+      this.pagina -= this.cuantosPorPagina;
   }
 }

@@ -4,7 +4,7 @@
     type="button"
     class="btn-close"
     aria-label="Close"
-    (click)="cerrar()"
+    (click)="modalRef.close()"
   ></button>
 </div>
 <div class="modal-body">
@@ -126,7 +126,7 @@
     </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="cerrar()">
+  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
     Cerrar
   </button>
   <button type="submit" class="btn btn-primary" (click)="guardarCambios()">Guardar cambios</button>

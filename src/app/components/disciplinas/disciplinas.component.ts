@@ -36,7 +36,9 @@ export class DisciplinasComponent implements OnInit {
         "edit": discEditar
       },
     });
-
+    this.modalRef.onClose.subscribe(()=>{this.discService
+      .getDisciplina()
+      .subscribe((response) => (this.disciplinas = response));});
   }
 
   eliminarDisciplina(codigo: string) {

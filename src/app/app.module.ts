@@ -20,6 +20,7 @@ import { ModalEditarJugadorComponent } from './components/modal-editar-jugador/m
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {CommonModule } from '@angular/common';
 import { ModalEditComponent } from './components/modal-edit/modal-edit.component';
+import { PaginacionPipe } from './components/pipes/paginacion.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ModalEditComponent } from './components/modal-edit/modal-edit.component
     DisciplinasComponent,
     NuevaDisciplinaComponent,
     ModalEditarJugadorComponent,
-    ModalEditComponent
+    ModalEditComponent,
+    PaginacionPipe
   ],
   imports: [
     RouterModule,
