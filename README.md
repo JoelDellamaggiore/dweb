@@ -1,6 +1,7 @@
 # Desarrollo de aplicaciones web - UTN FRVM 2022
 
-Este repositorio contendra los trabajos practicos solicitados por los docentes del grupo nº7
+Este repositorio contiene el trabajo final presentado para la aprobación de la materia Desarrollo de aplicaciones web de 5to año de la carrera de Ingeniería en Sistemas de Información, el cual fue desarrollado por los alumnos Dellamaggiore Joel y Giordano Santiago.
+El objetivo que satisface la web es que el usuario o administrador de la misma, pueda registrar jugadores universitarios de las diferentes UTN del país, a diferentes disciplinas, las cuales también son administrables para él. Posterior al registro podra observar una lista paginada con los jugadores que fueron exitosamente registrados, con la posibilidad de que a éstos los pueda filtrar por su nombre, apellido, nacionalidad, disciplina, o facultad.
 
 # Dweb
 
